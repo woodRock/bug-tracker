@@ -1,9 +1,18 @@
 [0] Config.pm:302> INFO - This is Biber 2.9
 [0] Config.pm:305> INFO - Logfile is 'SRS.blg'
-[26] biber:313> INFO - === Fri Jan 10, 2020, 18:03:39
-[47] Biber.pm:371> INFO - Reading 'SRS.bcf'
-[110] Biber.pm:857> INFO - Found 0 citekeys in bib section 0
-[116] Utils.pm:169> WARN - The file 'SRS.bcf' does not contain any citations!
-[124] bbl.pm:617> INFO - Writing 'SRS.bbl' with encoding 'ascii'
-[124] bbl.pm:720> INFO - Output to SRS.bbl
-[124] Biber.pm:110> INFO - WARNINGS: 1
+[32] biber:313> INFO - === Sat Jan 11, 2020, 01:58:58
+[56] Biber.pm:371> INFO - Reading 'SRS.bcf'
+[135] Biber.pm:857> INFO - Found 6 citekeys in bib section 0
+[156] Biber.pm:3981> INFO - Processing section 0
+[167] Biber.pm:4154> INFO - Looking for bibtex format file 'my.bib' for section 0
+[169] bibtex.pm:1468> INFO - LaTeX decoding ...
+[176] bibtex.pm:1294> INFO - Found BibTeX data source 'my.bib'
+[192] Utils.pm:169> WARN - I didn't find a database entry for 'sqlInjection' (section 0)
+[192] Utils.pm:169> WARN - I didn't find a database entry for 'xss' (section 0)
+[206] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[206] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[206] Biber.pm:3809> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[207] Biber.pm:3815> INFO - No sort tailoring available for locale 'en-US'
+[217] bbl.pm:617> INFO - Writing 'SRS.bbl' with encoding 'UTF-8'
+[220] bbl.pm:720> INFO - Output to SRS.bbl
+[221] Biber.pm:110> INFO - WARNINGS: 2

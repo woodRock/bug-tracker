@@ -16,5 +16,124 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global}
+    \entry{designpatterns97}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=f1b99cb56227debcfbccf756884d780f}{%
+           family={Gamma},
+           familyi={G\bibinitperiod},
+           given={E},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson Education (US)}%
+      }
+      \strng{namehash}{f1b99cb56227debcfbccf756884d780f}
+      \strng{fullhash}{f1b99cb56227debcfbccf756884d780f}
+      \strng{bibnamehash}{f1b99cb56227debcfbccf756884d780f}
+      \strng{authorbibnamehash}{f1b99cb56227debcfbccf756884d780f}
+      \strng{authornamehash}{f1b99cb56227debcfbccf756884d780f}
+      \strng{authorfullhash}{f1b99cb56227debcfbccf756884d780f}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Design Patterns, Elements of Reusable Object Orientated Software}
+      \field{year}{1997}
+    \endentry
+    \entry{ibm20}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=cbf44511d041dc6d1dd73cc0c033122c}{%
+           family={IBM},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{fullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{bibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorbibnamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authornamehash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \strng{authorfullhash}{cbf44511d041dc6d1dd73cc0c033122c}
+      \field{sortinit}{I}
+      \field{sortinithash}{320bc8fe8101b9376f9f21cd507de0e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{1}
+      \field{title}{Bug-tracking, Improve product development by tracking software errors and defects}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://www.ibm.com/topics/bug-tracking
+      \endverb
+      \verb{url}
+      \verb https://www.ibm.com/topics/bug-tracking
+      \endverb
+    \endentry
+    \entry{cleancode08}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=1041ae168df991c8f9f3f43285c134c1}{%
+           family={Martin},
+           familyi={M\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson Education}%
+      }
+      \strng{namehash}{1041ae168df991c8f9f3f43285c134c1}
+      \strng{fullhash}{1041ae168df991c8f9f3f43285c134c1}
+      \strng{bibnamehash}{1041ae168df991c8f9f3f43285c134c1}
+      \strng{authorbibnamehash}{1041ae168df991c8f9f3f43285c134c1}
+      \strng{authornamehash}{1041ae168df991c8f9f3f43285c134c1}
+      \strng{authorfullhash}{1041ae168df991c8f9f3f43285c134c1}
+      \field{sortinit}{M}
+      \field{sortinithash}{cfd219b90152c06204fab207bc6c7cab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Clean Code, A Handbook of Agile Software Craftsmenship}
+      \field{year}{2008}
+    \endentry
+    \entry{mit20}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=70fbba0bfa96d8d4bfb8a95b1f64c75b}{%
+           family={OpenSource},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{70fbba0bfa96d8d4bfb8a95b1f64c75b}
+      \strng{fullhash}{70fbba0bfa96d8d4bfb8a95b1f64c75b}
+      \strng{bibnamehash}{70fbba0bfa96d8d4bfb8a95b1f64c75b}
+      \strng{authorbibnamehash}{70fbba0bfa96d8d4bfb8a95b1f64c75b}
+      \strng{authornamehash}{70fbba0bfa96d8d4bfb8a95b1f64c75b}
+      \strng{authorfullhash}{70fbba0bfa96d8d4bfb8a95b1f64c75b}
+      \field{sortinit}{O}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{1}
+      \field{title}{Open Source Initiative, The MIT License}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://opensource.org/licenses/MIT
+      \endverb
+      \verb{url}
+      \verb https://opensource.org/licenses/MIT
+      \endverb
+    \endentry
+  \enddatalist
+  \missing{sqlInjection}
+  \missing{xss}
+\endrefsection
 \endinput
 
