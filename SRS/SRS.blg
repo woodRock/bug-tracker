@@ -1,0 +1,9 @@
+[0] Config.pm:302> INFO - This is Biber 2.9
+[0] Config.pm:305> INFO - Logfile is 'SRS.blg'
+[26] biber:313> INFO - === Fri Jan 10, 2020, 18:03:39
+[47] Biber.pm:371> INFO - Reading 'SRS.bcf'
+[110] Biber.pm:857> INFO - Found 0 citekeys in bib section 0
+[116] Utils.pm:169> WARN - The file 'SRS.bcf' does not contain any citations!
+[124] bbl.pm:617> INFO - Writing 'SRS.bbl' with encoding 'ascii'
+[124] bbl.pm:720> INFO - Output to SRS.bbl
+[124] Biber.pm:110> INFO - WARNINGS: 1
