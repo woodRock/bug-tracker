@@ -1,0 +1,57 @@
+@startuml
+
+:Author: 
+:Contributor: << Dev >> 
+:Audience: << Human >>
+:Authentication: << Service >>
+
+Author <|-- Contributor 
+Contributor <|-- Audience
+
+
+rectangle View {
+	rectangle User {
+		Audience --> (Sign In)
+		Audience --> (Sign Out)
+		Audience --> (Register)
+	}
+	rectangle Bug {
+		Contributor --> (Add Bug)
+		Contributor --> (Edit Bug)
+		Author --> (Remove Bug)
+	} 
+	rectangle Project {
+		Audience --> (View Public Projects)
+		Author --> (Add Project)
+		Author --> (Remove Project)
+		Author --> (Edit Project)
+	}
+}
+
+rectangle Model {
+	(TBD database)
+	(TBD framework)
+}
+
+rectangle Controller {
+	(User Validation) --> (Add Bug) 
+	(User Validation) --> (Edit Bug)
+	(User Validation) --> (Remove Bug)
+	(User Validation) --> (Add Project)
+	(User Validation) --> (Remove Project)
+	(User Validation) --> (Edit Project)
+	(User Validation) --> (Sign In)
+	(User Validation) --> (Register)
+	(User Validation) --> Authentication
+	(User Validation) --> (TBD database)
+	(Update Bug) --> (TBD database)
+	(Update Bug) --> (Add Bug) 
+	(Update Bug) --> (Edit Bug)
+	(Update Bug) --> (Remove Bug)
+	(Update Project) --> (TBD database)
+	(Update Project) --> (Add Project)
+	(Update Project) --> (Edit Project)
+	(Update Project) --> (Remove Project)
+
+}
+@enduml

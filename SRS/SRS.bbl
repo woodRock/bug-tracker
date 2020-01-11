@@ -19,6 +19,33 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
+    \entry{aboutface14}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=54120107ed7ff1edca6d41b6d83288a4}{%
+           family={Cooper},
+           familyi={C\bibinitperiod},
+           given={Allen},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley}%
+      }
+      \strng{namehash}{54120107ed7ff1edca6d41b6d83288a4}
+      \strng{fullhash}{54120107ed7ff1edca6d41b6d83288a4}
+      \strng{bibnamehash}{54120107ed7ff1edca6d41b6d83288a4}
+      \strng{authorbibnamehash}{54120107ed7ff1edca6d41b6d83288a4}
+      \strng{authornamehash}{54120107ed7ff1edca6d41b6d83288a4}
+      \strng{authorfullhash}{54120107ed7ff1edca6d41b6d83288a4}
+      \field{sortinit}{C}
+      \field{sortinithash}{963e9d84a3da2344e8833203de5aed05}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{About Face: The Essentials of Interaction Design, 4th Edition}
+      \field{year}{2014}
+    \endentry
     \entry{designpatterns97}{book}{}
       \name{author}{1}{}{%
         {{uniquename=0,uniquepart=base,hash=f1b99cb56227debcfbccf756884d780f}{%
@@ -45,6 +72,35 @@
       \field{labeltitlesource}{title}
       \field{title}{Design Patterns, Elements of Reusable Object Orientated Software}
       \field{year}{1997}
+    \endentry
+    \entry{hash20}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=e39b9c178b2c9be4e99b141d956c6ff6}{%
+           family={GeeksForGeeks},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{e39b9c178b2c9be4e99b141d956c6ff6}
+      \strng{fullhash}{e39b9c178b2c9be4e99b141d956c6ff6}
+      \strng{bibnamehash}{e39b9c178b2c9be4e99b141d956c6ff6}
+      \strng{authorbibnamehash}{e39b9c178b2c9be4e99b141d956c6ff6}
+      \strng{authornamehash}{e39b9c178b2c9be4e99b141d956c6ff6}
+      \strng{authorfullhash}{e39b9c178b2c9be4e99b141d956c6ff6}
+      \field{sortinit}{G}
+      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{1}
+      \field{title}{What are Hash Functions and How to choose a good Hash Function}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://www.geeksforgeeks.org/what-are-hash-functions-and-how-to-choose-a-good-hash-function/
+      \endverb
+      \verb{url}
+      \verb https://www.geeksforgeeks.org/what-are-hash-functions-and-how-to-choose-a-good-hash-function/
+      \endverb
     \endentry
     \entry{ibm20}{online}{}
       \name{author}{1}{}{%
@@ -74,6 +130,30 @@
       \verb{url}
       \verb https://www.ibm.com/topics/bug-tracking
       \endverb
+    \endentry
+    \entry{totp11}{book}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=8156eae38e17275f0d4e90ae1051c2ab}{%
+           family={IETF},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Internet Engineering Task Force}%
+      }
+      \strng{namehash}{8156eae38e17275f0d4e90ae1051c2ab}
+      \strng{fullhash}{8156eae38e17275f0d4e90ae1051c2ab}
+      \strng{bibnamehash}{8156eae38e17275f0d4e90ae1051c2ab}
+      \strng{authorbibnamehash}{8156eae38e17275f0d4e90ae1051c2ab}
+      \strng{authornamehash}{8156eae38e17275f0d4e90ae1051c2ab}
+      \strng{authorfullhash}{8156eae38e17275f0d4e90ae1051c2ab}
+      \field{sortinit}{I}
+      \field{sortinithash}{320bc8fe8101b9376f9f21cd507de0e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{TOTP: Time-Based One-Time Password Algorithm}
+      \field{year}{2011}
     \endentry
     \entry{cleancode08}{book}{}
       \name{author}{1}{}{%
@@ -131,9 +211,126 @@
       \verb https://opensource.org/licenses/MIT
       \endverb
     \endentry
+    \entry{xss20}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=24b95a7fdad5a850196cd87546dcc70b}{%
+           family={OWASP},
+           familyi={O\bibinitperiod}}}%
+      }
+      \strng{namehash}{24b95a7fdad5a850196cd87546dcc70b}
+      \strng{fullhash}{24b95a7fdad5a850196cd87546dcc70b}
+      \strng{bibnamehash}{24b95a7fdad5a850196cd87546dcc70b}
+      \strng{authorbibnamehash}{24b95a7fdad5a850196cd87546dcc70b}
+      \strng{authornamehash}{24b95a7fdad5a850196cd87546dcc70b}
+      \strng{authorfullhash}{24b95a7fdad5a850196cd87546dcc70b}
+      \field{sortinit}{O}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{1}
+      \field{title}{Cross-site Scripting (XSS)}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)
+      \endverb
+      \verb{url}
+      \verb https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)
+      \endverb
+    \endentry
+    \entry{plantuml20}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=9e991784a7de86b867cc684c4745f4dd}{%
+           family={PlantUML},
+           familyi={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{9e991784a7de86b867cc684c4745f4dd}
+      \strng{fullhash}{9e991784a7de86b867cc684c4745f4dd}
+      \strng{bibnamehash}{9e991784a7de86b867cc684c4745f4dd}
+      \strng{authorbibnamehash}{9e991784a7de86b867cc684c4745f4dd}
+      \strng{authornamehash}{9e991784a7de86b867cc684c4745f4dd}
+      \strng{authorfullhash}{9e991784a7de86b867cc684c4745f4dd}
+      \field{sortinit}{P}
+      \field{sortinithash}{8d51b3d5b78d75b54308d706b9bbe285}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{1}
+      \field{title}{PlantUML in a nutshell}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://plantuml.com/
+      \endverb
+      \verb{url}
+      \verb https://plantuml.com/
+      \endverb
+    \endentry
+    \entry{ieee20}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=05a97bdde0f9f626f0e98d1474cf455d}{%
+           family={Taafe},
+           familyi={T\bibinitperiod},
+           given={Ed},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{05a97bdde0f9f626f0e98d1474cf455d}
+      \strng{fullhash}{05a97bdde0f9f626f0e98d1474cf455d}
+      \strng{bibnamehash}{05a97bdde0f9f626f0e98d1474cf455d}
+      \strng{authorbibnamehash}{05a97bdde0f9f626f0e98d1474cf455d}
+      \strng{authornamehash}{05a97bdde0f9f626f0e98d1474cf455d}
+      \strng{authorfullhash}{05a97bdde0f9f626f0e98d1474cf455d}
+      \field{sortinit}{T}
+      \field{sortinithash}{6f7aff9db9dcfeb7f95fd5bbd2f78df9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{1}
+      \field{title}{Software Requirements Specification}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://en.wikipedia.org/wiki/Software_requirements_specification
+      \endverb
+      \verb{url}
+      \verb https://en.wikipedia.org/wiki/Software_requirements_specification
+      \endverb
+    \endentry
+    \entry{sql20}{online}{}
+      \name{author}{1}{}{%
+        {{uniquename=0,uniquepart=base,hash=49bf87f9886717d572292d1729842b6c}{%
+           family={w3schools.com},
+           familyi={w\bibinitperiod}}}%
+      }
+      \strng{namehash}{49bf87f9886717d572292d1729842b6c}
+      \strng{fullhash}{49bf87f9886717d572292d1729842b6c}
+      \strng{bibnamehash}{49bf87f9886717d572292d1729842b6c}
+      \strng{authorbibnamehash}{49bf87f9886717d572292d1729842b6c}
+      \strng{authornamehash}{49bf87f9886717d572292d1729842b6c}
+      \strng{authorfullhash}{49bf87f9886717d572292d1729842b6c}
+      \field{sortinit}{w}
+      \field{sortinithash}{ecb89ff85896a47dc313960773ac311d}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{1}
+      \field{title}{SQL Injection}
+      \field{year}{2020}
+      \field{dateera}{ce}
+      \verb{urlraw}
+      \verb https://www.w3schools.com/sql/sql_injection.asp
+      \endverb
+      \verb{url}
+      \verb https://www.w3schools.com/sql/sql_injection.asp
+      \endverb
+    \endentry
   \enddatalist
-  \missing{sqlInjection}
-  \missing{xss}
 \endrefsection
 \endinput
 

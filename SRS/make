@@ -1,0 +1,5 @@
+pdflatex SRS.tex
+biber SRS 
+makeglossaries SRS
+pdflatex SRS.tex
+pdflatex SRS.tex
