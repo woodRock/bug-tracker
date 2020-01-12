@@ -1,0 +1,10 @@
+@startsalt
+{
+	Name : | "SQL Injection"
+	Description : | "The database is vulnerable to SQL... "
+	Priority : | ^Catastrophic^ 
+	State : | ^Active^ 
+	[Cancel <&x>] | [Create <&plus>]
+}
+[Add]
+@endsalt

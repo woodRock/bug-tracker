@@ -2,6 +2,7 @@
 
 \usepackage[hidelinks]{hyperref}
 \usepackage[utf8]{inputenc}
+\usepackage{float}
 \usepackage{graphicx}
 \graphicspath{ {assets/} }
 \usepackage[backend=biber, style=authoryear-icomp]{biblatex}
@@ -68,7 +69,11 @@ The development of this software originated out of necessity. One of the most cr
 \comment{
 	Summarize the major functions to the product must perform or must let the user perform. Details will be provided in Section 3, so only a high level summary (such as a bullet list) is needed here. Organize the functions to make them understandable to any ready of the SRS. A picture of the major groups of related requirements and how they relate, such as a top level data flow diagram or object class diagram, is often effective.
 	}
-\includegraphics[width=\textwidth]{classDiagram.png}
+\begin{figure}[h]
+\caption{Class Diagram}
+\centering
+\includegraphics[width=\textwidth]{class-diagram.png}
+\end{figure}
 \subsection{User Classes and Characteristics}\label{userClass}
 \comment{
 Identify the various user classes that you anticipate will use this product. User classes may be differentiated based on the frequency of use, subset of product functions used, technical expertise, security or privelege levels, educational level, or experience. Describe the pertinent characteristics of each user class. Certain requirements may pertain only to certain user classes. Distinguish the most import user classes for this product from those who are less important to satisfy.
@@ -80,8 +85,11 @@ An \emph{Author} has permission to delete and edit a project at will. They can a
 A \emph{Collaborater} is an actor that has been granted permissions by the author. These privaleges allow the user to contribute bug reports to a project. However they cannot edit or delete the project itself.
 \\ \\
 The \emph{Audience} includes users that do not come under the aforementioned actors. They are able to view public projects. However they cannot contribute bug reports to these projects. Also they cannot view private projects.
-\\ \\
-\includegraphics[width=\textwidth]{useCaseDiagram.png}
+\begin{figure}[h]
+\caption{ Use Case Diagram}
+\centering
+\includegraphics[width=\textwidth]{use-case-diagram.png}
+\end{figure}
 \subsection{Operating Environment}
 \comment{
 Describe the enviroment in which the software will operate, including the hardware platform, operating systems and versions, and any other software components or applications with which it must peacefully coexist.
@@ -129,15 +137,45 @@ Git is the Version Control System used to document the development of the projec
 	}
 The user interfaces for this software will be designed to work in a browser. The web app intefaces will be designed with mobile use considered. Therefore all of the following interfaces will also have cross-compbatibility with browsers on mobile devices. The user interface will be designed with usability being the primary focus. It will implement some common UI design conventions discussed in literature \parencite{aboutface14}
 \\ \\
-The log in screen is the first interface the user will see. This will allow the user to log in to their account. Google verification will be provided should a user not want to create their own account
+\begin{figure}[H]\label{sign-in}
+\caption{Sign In}
+\centering
+\includegraphics[width=0.5\textwidth]{sign-in.png}
+\end{figure}
+\begin{figure}[H]\label{register}
+\caption{Register}
+\centering 
+\includegraphics[width=0.5\textwidth]{register.png}
+\end{figure}
+The sign in screen is the first interface the user will see. This will allow the user to log in to their account. Google verification will be provided should a user not want to create their own account (\nameref{sign-in}).
 \\ \\
-Another interface is the project menu. This allows the user to navigate to a particular project. With the possibility to create a new project, or find an existing one.
+\begin{figure}[H]\label{project}
+\caption{Add a Project}
+\centering
+\includegraphics[width=0.5\textwidth]{project.png}
+\end{figure}
+\begin{figure}[H]\label{projects}
+\caption{Projects Menu}
+\centering
+\includegraphics[width=0.75\textwidth]{projects.png}
+\end{figure}
+Another interface is the project menu. This allows the user to navigate to a particular project. With the possibility to create a new project, or find an existing one (\nameref{projects},\nameref{project}).
 \\ \\
-Each project has its own dashboard. On this interface a user can add/change the status of bugs. View the history of a project. Search for a bug within a project.
+\begin{figure}[H]\label{bug}
+\caption{Add a Bug}
+\centering
+\includegraphics[width=0.5\textwidth]{bug.png}
+\end{figure}
+\begin{figure}[H]\label{bugs}
+\caption{Project Menu}
+\centering
+\includegraphics[width=0.75\textwidth]{bugs.png}
+\end{figure}
+Each project has its own dashboard. On this interface a user can add/change the status of bugs. View the history of a project. Search for a bug within a project (\nameref{bugs}, \nameref{bug}).
 \\ \\
 Their will be a settings interface for the authors of projects. Given the correct log in credentials a user will be able to edit information about a project. Such as whether it is public or private, its name, remove a project ... etc.
 \subsection{Hardware Interfaces}
-\comment{
+\comment{i
 Describe the logical and physical characteristics of each interface between the software product and the hardware components of the system. This may include the supported device types, the communication protocols to be used.
 	}
 The software supports any device that supports a \acrshort{tbd} browsers. It can run on Desktop, Laptop and Mobile devices so long as they support the \acrshort{tbd} framework.
@@ -271,13 +309,13 @@ The software demonstrates \gls{mod} through the use of the \acrshort{mvc} design
 \\ \\
 \Gls{test} is perhaps one of the most important aspects of developing reliable software. Through the use of \acrshort{tdd}, this software creates its own test suite during development. This test suite helps to demonstrate the functionality of the software. It make integration testing new features for un-intended side effects a piece of cake, since the test suite is already written. Using \acrshort{tdd} is one of the most effective ways to demonstrate that the software meets its own requirements.
 \\ \\
-\Gls{main} is a quality attribute that software inherits through \gls{mod} and \gls{test}. Focussing on \gls{mod} by using \gls{mvc} means that each module has low coupling. The test is written first, then the code to pass it. This means that extra functionality or dead code will not be prevelent in the code base. This in combination with the \gls{mod} will ensure high cohesion.
+\Gls{main} is a quality attribute that software inherits through \gls{mod} and \gls{test}. Focussing on \gls{mod} by using \gls{mvc} means that each module has low coupling. Using \gls{tdd} the test is written first, then the code to pass it. This means that extra functionality or dead code will not be prevelent in the code base. This in combination with the \gls{mod} will ensure high cohesion.
 \subsection{Business Rules}
 \comment{
 List any principles about the product, such as which individuals or roles can perform which functions under specific circumstances. These are not functional requirments in themselves, but they may imply certain functional to enforce the rules.
 	}
 The individuals who can perform specific functions is explained in detial in this previous section, \nameref{userClass}. To reiterate the business rules for this software the reasoning behind this will be explained.
-\\ \\ 
+\\ \\
 An \emph{Author} can Delete and Rename Projects and Bugs. This rule applies only to the projects they have created. This privelage is extended to the user such that they can manage their own projects. Colloboraters do not have these permissions because an author is the only actor that should be able to decide whether or not a project is needed.
 \\ \\
 \emph{Authors} and \emph{Collaborators} can see, add bugs, change status for private projects. Some projects may have more than one developer. The author is able to add one or more collobaraters to their own project. This allows a team to track bugs for a project. This functionality is not extended to the audience, this is because an author may not welcome the input of random contributors.
@@ -301,6 +339,11 @@ Define all the terms necessary to properly interpret the \acrshort{srs}, includi
 \comment{
 Optionally, include any pertinent analysis models, such as data flow diagrams, class diagrams, state-transition diagrams, or entity-relationship diagrams.
 	}
+\begin{figure}[h]
+\caption{ Sign In Sequence Diagram }
+\centering
+\includegraphics[width=\textwidth]{sequence-diagram.png}
+\end{figure}
 \subsection{To Be Determined List}
 \comment{
 Collect a numbered list of the \acrshort{tbd} (to be determined) references in the \acrshort{srs} so they can be tracked for closure.

@@ -1,0 +1,25 @@
+@startuml 
+actor User 
+participant Bugtracker
+participant Authentication
+database Database
+
+User -> Bugtracker : username + password
+
+Bugtracker -> Authentication : User login
+
+Authentication -> Authentication : Check authentication
+
+Authentication --> Bugtracker : << Invalid >> 
+
+Authentication -> Authentication : Encrypt token 
+
+Authentication --> Bugtracker : << Token >>
+
+Bugtracker -> Bugtracker : get projects
+
+Bugtracker --> User : << Success >>
+
+User -> Database : Editing Rights
+
+@enduml

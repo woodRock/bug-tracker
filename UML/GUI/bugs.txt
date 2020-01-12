@@ -1,0 +1,16 @@
+@startsalt 
+{
+"               " | [<&magnifying-glass>] | [New <&plus>] | [<&cog>]
+~~ | * | * | * | * 
+recent <&caret-bottom> | state <&caret-bottom> | priority <&caret-bottom> | author <&caret-bottom> 
+~~ | * | * | * | * 
+<&bug> <b>SQL Injection | Active | Catastrphic | woodRock <&person>
+.. | * | * | * | *
+The database is vulnerable to SQL Injection. The user input is not sanitized ... | * | * | *
+-- | * | * | * | * 
+<&bug> <b>XSS Attacks | Test | Minor | woodRock <&person>
+.. | * | * | * | *
+The users private information is vulernable to Cross-site scripting. Cookies can ... | * | * | *
+-- | * | * | * | *
+}
+@endsalt

@@ -1,0 +1,10 @@
+@startsalt
+{
+	Name : | "SQL Server"
+	Description : | "A basic implementation of an SQL server ... "
+	Colloboraters : | [<&plus>]
+	[X] Private
+	[Cancel <&x>] | [Add <&plus>]
+}
+@endsalt
+

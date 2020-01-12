@@ -1,0 +1,7 @@
+@startsalt
+{
+  Username<&person> | "woodRock  "
+  Password<&key> | "****     "
+  [Cancel <&circle-x>] | [OK <&account-login>] | [Register]
+}
+@endsalt
