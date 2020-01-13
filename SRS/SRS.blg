@@ -1,15 +1,15 @@
 [0] Config.pm:302> INFO - This is Biber 2.9
 [0] Config.pm:305> INFO - Logfile is 'SRS.blg'
-[29] biber:313> INFO - === Sun Jan 12, 2020, 21:44:22
-[53] Biber.pm:371> INFO - Reading 'SRS.bcf'
-[117] Biber.pm:857> INFO - Found 11 citekeys in bib section 0
+[33] biber:313> INFO - === Sun Jan 12, 2020, 22:16:07
+[56] Biber.pm:371> INFO - Reading 'SRS.bcf'
+[119] Biber.pm:857> INFO - Found 11 citekeys in bib section 0
 [133] Biber.pm:3981> INFO - Processing section 0
-[147] Biber.pm:4154> INFO - Looking for bibtex format file 'my.bib' for section 0
-[148] bibtex.pm:1468> INFO - LaTeX decoding ...
-[159] bibtex.pm:1294> INFO - Found BibTeX data source 'my.bib'
-[220] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[220] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[220] Biber.pm:3809> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
-[220] Biber.pm:3815> INFO - No sort tailoring available for locale 'en-US'
-[236] bbl.pm:617> INFO - Writing 'SRS.bbl' with encoding 'UTF-8'
-[243] bbl.pm:720> INFO - Output to SRS.bbl
+[145] Biber.pm:4154> INFO - Looking for bibtex format file 'my.bib' for section 0
+[147] bibtex.pm:1468> INFO - LaTeX decoding ...
+[158] bibtex.pm:1294> INFO - Found BibTeX data source 'my.bib'
+[223] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[223] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[223] Biber.pm:3809> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[223] Biber.pm:3815> INFO - No sort tailoring available for locale 'en-US'
+[242] bbl.pm:617> INFO - Writing 'SRS.bbl' with encoding 'UTF-8'
+[250] bbl.pm:720> INFO - Output to SRS.bbl

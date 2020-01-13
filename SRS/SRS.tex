@@ -18,7 +18,7 @@
 \begin{document}
 
 \title{
-	Software Requirement Specification \\
+	Software Requirement Specification\\
 	for \\
 	Bug-Tracker \\
 	Version 1.0 approved
@@ -28,6 +28,7 @@
 \newpage
 
 \tableofcontents \label{contents}
+\newpage
 \section{Introduction}
 \subsection{Purpose}
 \comment{
@@ -144,7 +145,7 @@ The user interfaces for this software will be designed to work in a browser. The
 \end{figure}
 \begin{figure}[H]\label{register}
 \caption{Register}
-\centering 
+\centering
 \includegraphics[width=0.5\textwidth]{register.png}
 \end{figure}
 The sign in screen is the first interface the user will see. This will allow the user to log in to their account. Google verification will be provided should a user not want to create their own account (\nameref{sign-in}).
@@ -261,15 +262,15 @@ Functional Requirements:
 \item Bugs can be added/removed from a project
 \end{itemize}
 
-\subsection{Log-in}
-This feature allows the user to log in and access their projects. This has Google authentication and also the ability for a user to register their own account, and sign in. This feature requires \gls{encryption}, such that the users sensitive information such as emails and passwords are not leaked.
+\subsection{Sign In}
+This feature allows the user to sign in and access their projects. This has Google authentication and also the ability for a user to register their own account, and sign in. This feature requires \gls{encryption}, such that the users sensitive information such as emails and passwords are not leaked.
 \\ \\
 Stimulus/Response Sequences
 \begin{itemize}
 \item A user can enter a username and password
 \item Google Authentication
 \item Register an account
-\item A user can log in
+\item A user can sign in
 \end{itemize}
 Functional Requirements:
 \begin{itemize}
@@ -278,6 +279,11 @@ Functional Requirements:
 \item store the account information securely
 \item Account is linked to its own and collobaration projects
 \end{itemize}
+\begin{figure}[H]
+\caption{ Sign In Sequence Diagram }
+\centering
+\includegraphics[width=\textwidth]{sequence-diagram.png}
+\end{figure}
 \newpage
 
 \section{Other Nonfunctional Requirements}
@@ -335,15 +341,11 @@ Define all the terms necessary to properly interpret the \acrshort{srs}, includi
 
 \printglossary
 
-\subsection{Analysis Models}
+% \subsection{Analysis Models}
 \comment{
 Optionally, include any pertinent analysis models, such as data flow diagrams, class diagrams, state-transition diagrams, or entity-relationship diagrams.
 	}
-\begin{figure}[h]
-\caption{ Sign In Sequence Diagram }
-\centering
-\includegraphics[width=\textwidth]{sequence-diagram.png}
-\end{figure}
+
 \subsection{To Be Determined List}
 \comment{
 Collect a numbered list of the \acrshort{tbd} (to be determined) references in the \acrshort{srs} so they can be tracked for closure.
