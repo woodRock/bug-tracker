@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SuperSecretComponent } from './super-secret.component';
+import { ProjectsComponent } from './projects.component';
 
-describe('SuperSecretComponent', () => {
-  let component: SuperSecretComponent;
-  let fixture: ComponentFixture<SuperSecretComponent>;
+describe('ProjectsComponent', () => {
+  let component: ProjectsComponent;
+  let fixture: ComponentFixture<ProjectsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SuperSecretComponent ]
+      declarations: [ ProjectsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SuperSecretComponent);
+    fixture = TestBed.createComponent(ProjectsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

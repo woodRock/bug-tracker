@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AuthService } from './service/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +7,4 @@ import { AuthService } from './service/auth.service';
 })
 export class AppComponent {
   title = 'bug-tracker';
-  constructor(public auth: AuthService) {}
 }

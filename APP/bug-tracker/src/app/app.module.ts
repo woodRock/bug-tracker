@@ -9,7 +9,12 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { SuperSecretComponent } from './super-secret/super-secret.component';
+import { ProjectsComponent } from './component/projects/projects.component';
+import { LoginComponent } from './component/login/login.component';
+
+import { ProjectService } from './services/project.service'
+import { AuthService } from './service/auth.service';
+import { UsersComponent } from './component/users/users.component'
 
 // Config for the Firebase Integration
 const config = {
@@ -24,7 +29,9 @@ const config = {
 @NgModule({
   declarations: [
     AppComponent,
-    SuperSecretComponent
+    ProjectsComponent,
+    LoginComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,7 +42,7 @@ const config = {
     AngularFireAuthModule, // auth
     AngularFireStorageModule // storage
   ],
-  providers: [],
+  providers: [AuthService, ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

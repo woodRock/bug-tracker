@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SuperSecretComponent } from './super-secret/super-secret.component';
+import { ProjectsComponent } from './component/projects/projects.component';
 import { AuthGuard } from './services/auth.guard';
 import { AppComponent } from './app.component';
 
 const routes: Routes = [
-  { path : 'secret', component : SuperSecretComponent, canActivate: [AuthGuard] },
+  //{ path : 'projects', component : ProjectsComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
