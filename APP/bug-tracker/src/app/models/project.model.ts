@@ -1,5 +1,5 @@
 export interface Project {
-  id? : string
+  id? : string;
   name? : string;
   description? : string;
   collaborators? : string[];

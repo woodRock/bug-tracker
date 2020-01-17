@@ -1,0 +1,47 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<h1>Projects</h1>
+<div *ngIf="projects?.length > 0;else noProjects">
+  <ul *ngFor="let project of projects" class="collection">
+    <li class="collection-item">
+      <strong>{{project.name}}</strong>
+      {{project.description}}
+      {{project.collaborators}}
+      <i class="material-icons">{{ project.private ? 'perm_identity' : 'public' }}</i>
+      {{prettyDate(project.time)}}
+      <a class="secondary-content">
+        <i *ngIf="!editState" (click)="editProject($event, project)" class="fa fa-pencil"></i>
+        <i *ngIf="editState && projectToEdit.id == project.id" (click)="clearState()" class="fa fa-compress"></i>
+      </a>
+      <div *ngIf="editState && projectToEdit.id == project.id">
+        <form (ngSubmit)="updateProject(project)" class="col s6">
+          <div class="row">
+            <div class="input-field col s6">
+              <input type="text" placeholder="Add Title" [(ngModel)]="project.name" name="name">
+            </div>
+            <div class="input-field col s6">
+              <input type="text" placeholder="Add Title" [(ngModel)]="project.description" name="description">
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input type="text" placeholder="Add Title" [(ngModel)]="project.collaborators" name="collaborators">
+            </div>
+            <div class="input-field col s6">
+              <label>
+                <input type="checkbox" [(ngModel)]="project.private" name="private">
+                <span>Private</span>
+              </label>
+            </div>
+          </div>
+          <input type="submit" value="Update Project" class="btn orange">
+          <button (click)="deleteProject($event, project)" class="btn red">Delete Project</button>
+        </form>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<ng-template #noItems>
+  <hr>
+  <h5>There are no items to list</h5>
+</ng-template>
