@@ -9,16 +9,17 @@ import { MatSelectModule } from '@angular/material/select';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
+
 export class UsersComponent implements OnInit {
-
   users: User[];
-  selected: User;
-  collaborators: String;
+  selected: string;
 
-  constructor(private userService : UserService ) { }
+  constructor(private userService : UserService) {
+
+  }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe( users => {
+    this.userService.list().subscribe( users => {
       this.users = users
     })
   }

@@ -1,9 +1,22 @@
-<nav class="nav-wrapper black">
-  <a href="/" class="brand-logo center">Bug Tracker</a>
-  <ul id="nav-mobile" class="right hide-on-med-and-down">
-    <li><a routerLink="add-project">Add Project</a></li>
-    <li><a routerLink="projects">Projects</a></li>
-    <li><a routerLink="sign-in">Account</a></li>
-    <li><a routerLink="users">Users</a></li>    
-  </ul>
-</nav>
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>
+      <i class="material-icons red circle">bug_report</i>
+      Bug Tracker
+    </span>
+    <span class="example-fill-remaining-space"></span>
+    <span class="align-center"></span>
+    <span class="example-spacer"></span>
+    <button routerLink="add-project" mat-button>Add Project</button>
+    <button routerLink="projects" mat-button>Projects</button>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button routerLink="sign-in" mat-menu-item>
+        <mat-icon>person</mat-icon>
+        <span>Account</span>
+      </button>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>

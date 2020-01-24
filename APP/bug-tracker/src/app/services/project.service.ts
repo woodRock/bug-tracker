@@ -1,32 +1,20 @@
 import { Injectable } from '@angular/core'
+import { AngularFirestore } from '@angular/fire/firestore'
 import { CrudService } from './crud.service'
 import { Project } from '../models/project.model'
-import { AngularFirestore } from '@angular/fire/firestore'
+import { User } from '../models/user.model'
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectService {
 
-  private crudService: CrudService<Project>;
+export class ProjectService extends CrudService<Project> {
 
-  constructor(public afs: AngularFirestore) {
-    this.crudService = new CrudService<Project>(afs, 'projects');
+  constructor(_afs: AngularFirestore) {
+    super(_afs, 'projects');
   }
 
-  addProject(project: Project){
-    return this.crudService.add(project);
-  }
-
-  getProjects(){
-    return this.crudService.list();
-  }
-
-  deleteProject(project: Project) {
-    this.crudService.delete(project.id);
-  }
-
-  updateProject(project: Project) {
-    this.crudService.update(project)
-  }
+  addCollaborator(id: string, user: User){
+    this.afs.collection('projects').doc(id).collection('/collaborators').add(user)
+  };
 }

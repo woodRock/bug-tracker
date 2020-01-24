@@ -31,13 +31,13 @@ export class AuthService {
 
   async googleSignin() {
     const provider = new auth.GoogleAuthProvider();
-    const credential = await this. afAuth.auth.signInWithPopup(provider);
+    const credential = await this.afAuth.auth.signInWithPopup(provider);
     return this.updateUserData(credential.user);
   }
 
   async signOut() {
     await this.afAuth.auth.signOut();
-    return this.router.navigate(['/'])
+    return this.router.navigate(['/login'])
   }
 
   private updateUserData({uid, email, displayName, photoURL }: User) {

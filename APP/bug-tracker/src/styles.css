@@ -3,3 +3,8 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  --primary: rgba(12, 13, 7, 0.62);
+  --secondary: rgb(56, 19, 102);
+}

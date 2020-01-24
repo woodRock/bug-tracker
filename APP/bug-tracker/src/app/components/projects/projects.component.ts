@@ -14,17 +14,17 @@ export class ProjectsComponent implements OnInit {
   private editState: boolean = false;
   private projectToEdit: Project;
 
-  constructor(private projectService : ProjectService) { }
+  constructor(private projectService: ProjectService) { }
 
   ngOnInit() {
-    this.projectService.getProjects().subscribe( projects => {
+    this.projectService.list().subscribe(projects => {
       this.projects = projects;
     });
   }
 
   deleteProject(event, project: Project) {
     this.clearState();
-    this.projectService.deleteProject(project);
+    this.projectService.delete(project.id);
   }
 
   editProject(event, project: Project) {
@@ -33,7 +33,7 @@ export class ProjectsComponent implements OnInit {
   }
 
   updateProject(project: Project) {
-    this.projectService.updateProject(project);
+    this.projectService.update(project);
     this.clearState();
   }
 
@@ -42,13 +42,19 @@ export class ProjectsComponent implements OnInit {
     this.projectToEdit = null;
   }
 
-  collaboratorsAsList(project: Project){
-    var u:User;
-    u = project.collaborators[0];
-    return u.email
+  trim (s: string){
+    return s.substring(0, s.length - 2);
   }
 
-  prettyDate(timestamp){
-    return timestamp.toDate().toString().substring(0,24);
+  formatCollaborators(project: Project) {
+    var str = '';
+    for (let c of project.collaborators) {
+      str += c + ', ';
+    }
+    return this.trim(str);
+  }
+
+  prettyDate(timestamp) {
+    // return timestamp.toDate().toString().substring(0,24);
   }
 }

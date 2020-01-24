@@ -5,6 +5,10 @@ import { User } from '../../models/user.model';
 import { ViewChild, AfterViewInit } from '@angular/core';
 import { UsersComponent } from '../users/users.component';
 
+function serialize<T>(object: T) {
+  return JSON.parse(JSON.stringify(object));
+}
+
 @Component({
   selector: 'app-add-project',
   templateUrl: './add-project.component.html',
@@ -12,10 +16,9 @@ import { UsersComponent } from '../users/users.component';
 })
 export class AddProjectComponent implements OnInit, AfterViewInit {
 
-  @ViewChild(UsersComponent, { static: true }) user;
-
+  @ViewChild(UsersComponent, { static: false }) user;
   private project: Project;
-  selected: User;
+  selected: string;
 
   constructor(private projectService: ProjectService) {
     this.project = this.clearProject();
@@ -24,13 +27,26 @@ export class AddProjectComponent implements OnInit, AfterViewInit {
   ngOnInit() {
   }
 
+  validProject() {
+    return this.project.name != '' && this.project.description != ''
+  }
+
+  addProject() {
+    this.projectService.add(this.project);
+    this.clearProject()
+  }
+
   onSubmit() {
     if (this.validProject()) this.addProject();
   }
 
-  addProject() {
-    this.projectService.addProject(this.project);
-    this.clearProject()
+  ngAfterViewInit() {
+    this.selected = this.user.selected
+  }
+
+  selectUser() {
+    this.ngAfterViewInit();
+    this.project.collaborators.push(this.selected);
   }
 
   clearProject(): Project {
@@ -42,19 +58,6 @@ export class AddProjectComponent implements OnInit, AfterViewInit {
       private: false,
       time: new Date()
     }
-  }
-
-  selectUser() {
-    this.ngAfterViewInit();
-    this.project.collaborators = [this.selected];
-  }
-
-  validProject() {
-    return this.project.name != '' && this.project.description != ''
-  }
-
-  ngAfterViewInit() {
-    this.selected = this.user.selected
   }
 
 }
