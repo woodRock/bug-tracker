@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../services/project.service'
 import { Project } from '../../models/project.model'
+import { User } from '../../models/user.model'
 
 @Component({
   selector: 'app-projects',
@@ -39,6 +40,12 @@ export class ProjectsComponent implements OnInit {
   clearState() {
     this.editState = false;
     this.projectToEdit = null;
+  }
+
+  collaboratorsAsList(project: Project){
+    var u:User;
+    u = project.collaborators[0];
+    return u.email
   }
 
   prettyDate(timestamp){

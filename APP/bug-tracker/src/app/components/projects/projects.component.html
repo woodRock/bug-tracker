@@ -1,11 +1,11 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <h1>Projects</h1>
 <div *ngIf="projects?.length > 0;else noProjects">
-  <ul *ngFor="let project of projects" class="collection">
-    <li class="collection-item">
+  <ul *ngFor="let project of projects" class="card">
+    <li class="card-panel hoverable">
       <strong>{{project.name}}</strong>
       {{project.description}}
-      {{project.collaborators}}
+      {{collaboratorsAsList(project)}}
       <i class="material-icons">{{ project.private ? 'perm_identity' : 'public' }}</i>
       {{prettyDate(project.time)}}
       <a class="secondary-content">
@@ -13,6 +13,7 @@
         <i *ngIf="editState && projectToEdit.id == project.id" (click)="clearState()" class="fa fa-compress"></i>
       </a>
       <div *ngIf="editState && projectToEdit.id == project.id">
+        <hr>
         <form (ngSubmit)="updateProject(project)" class="col s6">
           <div class="row">
             <div class="input-field col s6">

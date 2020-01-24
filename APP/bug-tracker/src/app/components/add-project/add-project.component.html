@@ -13,18 +13,18 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
-          <input type="text" placeholder="Add Title" [(ngModel)]="project.collaborators" name="collaborators">
-          <label class="active">Collaborators</label>
+          <app-users></app-users>
+          <button class="btn orange" (click)="selectUser()">
+            <i class="material-icons">add</i>
+          </button>
+          <div class="input-field col s6">
+            <label>
+              <input type="checkbox" [(ngModel)]="project.private" name="private">
+              <span class="active">Private</span>
+            </label>
+          </div>
         </div>
-        <div class="input-field col s6">
-          <label>
-            <input type="checkbox" [(ngModel)]="project.private" name="private">
-            <span class="active">Private</span>
-          </label>
-        </div>
-      </div>
-      <input type="submit" value="Submit" class="btn">
+        <input type="submit" value="Submit" class="btn">
     </form>
   </div>
 </div>

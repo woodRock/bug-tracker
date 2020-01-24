@@ -1,47 +1,32 @@
-import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Injectable } from '@angular/core'
+import { CrudService } from './crud.service'
 import { Project } from '../models/project.model'
-import { map } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
 
-  private projectsCollection: AngularFirestoreCollection<Project>;
-  private projects: Observable<Project[]>;
-  private projectDoc: AngularFirestoreDocument<Project>;
+  private crudService: CrudService<Project>;
 
   constructor(public afs: AngularFirestore) {
-    this.projectsCollection = this.afs.collection<Project>(
-      'projects',
-      ref => ref.orderBy('name','asc')
-    );
-    this.projects = this.projectsCollection.snapshotChanges().pipe(
-      map(actions => actions.map ( a => {
-        const data = a.payload.doc.data() as Project;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      }))
-    )
-  }
-
-  getProjects(){
-    return this.projects;
+    this.crudService = new CrudService<Project>(afs, 'projects');
   }
 
   addProject(project: Project){
-    this.projectsCollection.add(project);
+    return this.crudService.add(project);
+  }
+
+  getProjects(){
+    return this.crudService.list();
   }
 
   deleteProject(project: Project) {
-    this.projectDoc = this.afs.doc(`projects/${project.id}`);
-    this.projectDoc.delete();
+    this.crudService.delete(project.id);
   }
 
   updateProject(project: Project) {
-    this.projectDoc = this.afs.doc(`projects/${project.id}`);
-    this.projectDoc.update(project);
+    this.crudService.update(project)
   }
 }

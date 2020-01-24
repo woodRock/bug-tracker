@@ -1,8 +1,10 @@
-export interface Project {
-  id? : string;
-  name? : string;
-  description? : string;
-  collaborators? : string[];
-  private?: boolean;
-  time?: Date;
+import { User } from './user.model'
+import { Entity } from './entity.model'
+
+export interface Project extends Entity {
+  name? : string,
+  description? : string,
+  collaborators? : User[],
+  private?: boolean,
+  time?: Date,
 }

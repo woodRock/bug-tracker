@@ -4,10 +4,15 @@ import { AuthGuard } from './services/auth.guard';
 import { AppComponent } from './app.component';
 import { ProjectsComponent } from './components/projects/projects.component';
 import { AddProjectComponent } from './components/add-project/add-project.component';
+import { LoginComponent } from './components/login/login.component';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   { path: 'projects', component: ProjectsComponent },
-  { path: 'add-project', component: AddProjectComponent }
+  { path: 'add-project', component: AddProjectComponent },
+  { path: 'sign-in', component: LoginComponent },
+  { path: 'users', component: UsersComponent }
+
 ];
 
 @NgModule({

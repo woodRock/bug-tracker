@@ -1,29 +1,8 @@
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<h1>Users</h1>
-<div *ngIf="users?.length > 0;else noUsers">
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Display</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users" class="collection">
-          <td>
-            <strong>{{user.displayName}}</strong>
-          </td>
-        <td>{{user.email}}</td>
-        <td>
-          <img src="{{user.photoURL}}" class="badge" width="30px" height=width>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<ng-template #noUsers>
-  <hr>
-  <h5>There are no items to list</h5>
-</ng-template>
+<mat-form-field>
+  <mat-label>Users</mat-label>
+  <mat-select [(value)]="this.selected">
+    <mat-option value="{{user}}"*ngFor="let user of users" >
+      {{user.displayName}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

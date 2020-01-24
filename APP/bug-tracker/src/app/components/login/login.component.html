@@ -1,11 +1,10 @@
 <div *ngIf="auth.user$ | async as user; else login">
   <!-- <app-projects></app-projects> -->
+  <strong>You are Signed In!</strong>
   <hr>
-  <button class="button" (click)="auth.signOut()">Sign Out</button>
-  <hr>
-  <app-users></app-users>
+  <button class="btn red" (click)="auth.signOut()">Sign Out</button>
 </div>
 
 <ng-template #login>
-  <button class="button" (click)="auth.googleSignin()">Sign In with Google</button>
+  <button class="btn green" (click)="auth.googleSignin()">Sign In with Google</button>
 </ng-template>
