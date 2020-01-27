@@ -7,7 +7,6 @@
     <span class="example-fill-remaining-space"></span>
     <span class="align-center"></span>
     <span class="example-spacer"></span>
-    <button routerLink="add-project" mat-button>Add Project</button>
     <button routerLink="projects" mat-button>Projects</button>
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
@@ -16,6 +15,14 @@
       <button routerLink="sign-in" mat-menu-item>
         <mat-icon>person</mat-icon>
         <span>Account</span>
+      </button>
+      <button routerLink="add-project" mat-menu-item>
+        <i class="material-icons">add</i>
+        <span>Project</span>
+      </button>
+      <button routerLink="add-bug" mat-menu-item>
+        <i class="material-icons">add</i>
+        <span>Bug</span>
       </button>
     </mat-menu>
   </mat-toolbar-row>

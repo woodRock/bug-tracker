@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-content">
     <span class="card-title">Add Project</span>
-    <form (ngSubmit)="onSubmit()" class="col s6">
+    <form class="col s6">
       <div class="row">
         <div class="input-field col s6">
           <input type="text" placeholder="Add Title" [(ngModel)]="project.name" name="name">
@@ -24,7 +24,7 @@
             </label>
           </div>
         </div>
-        <input routerLink="/projects" type="submit" value="Submit" class="btn">
+        <input routerLink="/projects" type="submit" value="Submit" class=" btn"(click)="onSubmit()" >
     </form>
   </div>
 </div>

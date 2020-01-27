@@ -1,0 +1,21 @@
+<div class="card">
+  <h1>Bugs</h1>
+  <div *ngIf="bugs?.length > 0;else nobugs">
+    <ul *ngFor="let bug of bugs" class="collection">
+      <li class="collection-item avatar">
+        <img src="https://lh3.googleusercontent.com/a-/AAuE7mDpvySbHdSFtBArfmx_QHMq-ihl90wdoc-fQSKOhQ" alt="" class="circle">
+        <strong>
+          {{bug.bug.name}}
+        </strong>
+        {{bug.bug.description}}
+        <span class="new badge red" attr.data-badge-caption="{{bug.bug.state}}"></span>
+        <span class="new badge green" attr.data-badge-caption="{{bug.bug.priority}}"></span>
+        {{bug.bug.contributor}}
+      </li>
+    </ul>
+  </div>
+  <ng-template #nobugs>
+    <hr>
+    <h5>No bugs! Go write some broken code...</h5>
+  </ng-template>
+</div>

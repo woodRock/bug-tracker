@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore'
-import { Observable } from 'rxjs';
-import { take, map } from 'rxjs/operators';
+import { Observable } from 'rxjs'
+import { take, map } from 'rxjs/operators'
 import { Entity } from '../models/entity.model'
 
 function serialize<T>(object: T) {

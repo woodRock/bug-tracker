@@ -12,10 +12,21 @@
       <i class="material-icons">{{ project.private ? 'perm_identity' : 'public' }}</i>
       {{prettyDate(project.time)}}
       <a class="secondary-content">
+        <i *ngIf="!addBugState" (click)="addBugs($event, project)" class="material-icons">bug_report</i>
         <i *ngIf="!editState" (click)="editProject($event, project)" class="fa fa-pencil"></i>
         <i class="material-icons" *ngIf="!editState" (click)="deleteProject($event, project)">delete</i>
         <i *ngIf="editState && projectToEdit.id == project.id" (click)="clearState()" class="fa fa-compress"></i>
       </a>
+      <div *ngIf="!viewBug">
+        <i class="material-icons green" (click)="toggleBugView()">bug_report</i>
+      </div>
+      <div *ngIf="viewBug">
+        <i class="material-icons" (click)="toggleBugView()">cancel</i>
+        <app-bugs [project]="project"></app-bugs>
+      </div>
+      <div *ngIf="addBugState && projectToEdit.id == project.id">
+        <app-add-bugs [project]="project"></app-add-bugs>
+      </div>
       <div *ngIf="editState && projectToEdit.id == project.id">
         <hr>
         <form (ngSubmit)="updateProject(project)" class="col s6">

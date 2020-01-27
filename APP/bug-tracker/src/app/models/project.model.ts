@@ -1,5 +1,5 @@
-import { User } from './user.model'
 import { Entity } from './entity.model'
+import { User } from './user.model'
 
 export interface Project extends Entity {
   name? : string,

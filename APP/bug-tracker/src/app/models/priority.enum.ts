@@ -1,0 +1,14 @@
+enum Priority {
+  MINOR,
+  NONCRITICAL,
+  IMPAIRED,
+  CATASTROPHIC
+};
+
+enum State {
+  ACTIVE,
+  TEST,
+  VERIFIED,
+  CLOSED,
+  REOPENED
+};

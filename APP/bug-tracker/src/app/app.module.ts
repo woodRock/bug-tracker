@@ -22,7 +22,9 @@ import {
   MatButtonModule, MatCardModule, MatDialogModule,
   MatInputModule, MatTableModule, MatToolbarModule,
   MatMenuModule, MatIconModule, MatProgressSpinnerModule } from '@angular/material'
-import { environment } from './../environments/environment'
+import { environment } from './../environments/environment';
+import { BugsComponent } from './components/bugs/bugs.component';
+import { AddBugComponent } from './components/add-bug/add-bug.component'
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { environment } from './../environments/environment'
     LoginComponent,
     UsersComponent,
     NavbarComponent,
-    AddProjectComponent
+    AddProjectComponent,
+    BugsComponent,
+    AddBugComponent
   ],
   imports: [
     BrowserModule,

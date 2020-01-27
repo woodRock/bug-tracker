@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ProjectService } from '../../services/project.service'
 import { Project } from '../../models/project.model'
 import { User } from '../../models/user.model'
+import { Bug } from '../../models/bug.model'
+import { AddBugComponent } from '../add-bug/add-bug.component'
 
 @Component({
   selector: 'app-projects',
@@ -13,6 +15,9 @@ export class ProjectsComponent implements OnInit {
   private projects: Project[];
   private editState: boolean = false;
   private projectToEdit: Project;
+  private addBugState: boolean = false;
+  private viewBug: boolean = false;
+  private bug: Bug;
 
   constructor(private projectService: ProjectService) { }
 
@@ -32,6 +37,11 @@ export class ProjectsComponent implements OnInit {
     this.projectToEdit = project;
   }
 
+  addBugs(event, project: Project) {
+    this.addBugState = true;
+    this.projectToEdit = project;
+  }
+
   updateProject(project: Project) {
     this.projectService.update(project);
     this.clearState();
@@ -42,7 +52,20 @@ export class ProjectsComponent implements OnInit {
     this.projectToEdit = null;
   }
 
-  trim (s: string){
+  getBugs(pid: string) {
+    this.projectService.getBugs(pid);
+  }
+
+  toggleBugView(){
+    this.viewBug = !this.viewBug;
+  }
+
+  clearBugState() {
+    this.addBugState = false;
+    this.projectToEdit = null;
+  }
+
+  trim(s: string) {
     return s.substring(0, s.length - 2);
   }
 

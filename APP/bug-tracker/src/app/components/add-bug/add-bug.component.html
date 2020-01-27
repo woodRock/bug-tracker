@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">Add Bug</span>
+    <form class="col s6">
+      <div class="row">
+        <div class="input-field col s6">
+          <input type="text" placeholder="Add Title" [(ngModel)]="this.bug.name" name="name">
+          <label class="active">Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="text" placeholder="Add Title" [(ngModel)]="this.bug.description" name="description">
+          <label class="active">Description</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <mat-form-field>
+            <mat-label>
+              <link rel="manifest" href="./manifest.json">Priority</mat-label>
+            <mat-select [(value)]="this.bug.priority">
+              <mat-option value="{{priority}}" *ngFor="let priority of priorities">
+                {{priority}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="input-field col s6">
+          <mat-form-field>
+            <mat-label>State</mat-label>
+            <mat-select [(value)]="this.bug.state">
+              <mat-option value="{{state}}" *ngFor="let state of states">
+                {{state}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <input type="submit" value="Submit" class=" btn" (click)="onSubmit()" routerLink="/" >
+    </form>
+  </div>
+</div>
