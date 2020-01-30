@@ -27,6 +27,17 @@ export class ProjectService extends CrudService<Project> {
     });
   }
 
+  deleteBug(pid: string, bid: string){
+    return new Promise<void>((resolve,reject) => {
+      this.afs.collection('projects/' + pid + '/bugs')
+        .doc<Bug>(bid)
+        .delete()
+        .then(() => {
+          resolve();
+        });
+    });
+  }
+
   getBugs(pid: string): Observable<Bug[]> {
     return this.afs.collection('projects/' + pid + '/bugs').snapshotChanges().pipe(
       map(changes => {

@@ -11,6 +11,7 @@
         <span class="new badge red" attr.data-badge-caption="{{bug.bug.state}}"></span>
         <span class="new badge green" attr.data-badge-caption="{{bug.bug.priority}}"></span>
         {{bug.bug.contributor}}
+        <i class="material-icons" (click)="deleteBug(bug.id)">delete</i>
       </li>
     </ul>
   </div>

@@ -17,6 +17,7 @@ export class ProjectsComponent implements OnInit {
   private projectToEdit: Project;
   private addBugState: boolean = false;
   private viewBug: boolean = false;
+  private projectbugs: Project;
   private bug: Bug;
 
   constructor(private projectService: ProjectService) { }
@@ -56,8 +57,9 @@ export class ProjectsComponent implements OnInit {
     this.projectService.getBugs(pid);
   }
 
-  toggleBugView(){
+  toggleBugView(project: Project){
     this.viewBug = !this.viewBug;
+    this.projectbugs = project;
   }
 
   clearBugState() {

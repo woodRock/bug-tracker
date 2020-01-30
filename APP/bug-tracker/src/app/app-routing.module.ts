@@ -11,10 +11,7 @@ import { AddBugComponent } from './components/add-bug/add-bug.component'
 const routes: Routes = [
   { path: 'projects', component: ProjectsComponent },
   { path: 'add-project', component: AddProjectComponent },
-  { path: 'sign-in', component: LoginComponent },
-  { path: 'bugs', component: BugsComponent },
-  { path: 'add-bug', component: AddBugComponent }
-
+  { path: 'sign-in', component: LoginComponent }
 ];
 
 @NgModule({

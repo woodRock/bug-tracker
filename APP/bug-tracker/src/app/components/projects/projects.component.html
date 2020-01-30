@@ -18,9 +18,9 @@
         <i *ngIf="editState && projectToEdit.id == project.id" (click)="clearState()" class="fa fa-compress"></i>
       </a>
       <div *ngIf="!viewBug">
-        <i class="material-icons green" (click)="toggleBugView()">bug_report</i>
+        <i class="material-icons green" (click)="toggleBugView(project)">bug_report</i>
       </div>
-      <div *ngIf="viewBug">
+      <div *ngIf="viewBug && project.id == projectbugs.id">
         <i class="material-icons" (click)="toggleBugView()">cancel</i>
         <app-bugs [project]="project"></app-bugs>
       </div>
@@ -59,5 +59,5 @@
 
 <ng-template #noItems>
   <hr>
-  <h5>There are no items to list</h5>
+  <h5>There are no Projects. Be creative...</h5>
 </ng-template>

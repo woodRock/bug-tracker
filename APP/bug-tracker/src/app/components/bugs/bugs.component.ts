@@ -17,7 +17,10 @@ export class BugsComponent implements OnInit {
   ngOnInit() {
     this.projectService.getBugs(this.project.id).subscribe(bugs => {
       this.bugs = bugs;
-      console.log(this.bugs);
     });
+  }
+
+  deleteBug(bid: string){
+    this.projectService.deleteBug(this.project.id, bid);
   }
 }
