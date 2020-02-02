@@ -12,11 +12,61 @@
         <span class="new badge green" attr.data-badge-caption="{{bug.bug.priority}}"></span>
         {{bug.bug.contributor}}
         <i class="material-icons" (click)="deleteBug(bug.id)">delete</i>
+        <i class="material-icons" (click)="editBug(bug)">edit</i>
       </li>
+      <div *ngIf="editBugState && bugToEdit.id == bug.id">
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">Edit</span>
+            <form class="col s6" (ngSubmit)="updateBug(project, bug)">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input type="text" placeholder="Add Title" [(ngModel)]="bug.bug.name" name="name">
+                  <label class="active">Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input type="text" placeholder="Add Title" [(ngModel)]="bug.bug.description" name="description">
+                  <label class="active">Description</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                  <mat-form-field>
+                    <mat-label>
+                      <link rel="manifest" href="./manifest.json">Priority</mat-label>
+                    <mat-select [(value)]="bug.bug.priority">
+                      <mat-option value="{{priority}}" *ngFor="let priority of priorities">
+                        {{priority}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="input-field col s6">
+                  <mat-form-field>
+                    <mat-label>State</mat-label>
+                    <mat-select [(value)]="bug.bug.state">
+                      <mat-option value="{{state}}" *ngFor="let state of states">
+                        {{state}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <input type="submit" value="Submit" class=" btn" routerLink="/projects">
+              <button routerLink="/projects" class="btn orange">Cancel</button>
+            </form>
+          </div>
+        </div>
+      </div>
     </ul>
   </div>
   <ng-template #nobugs>
-    <hr>
-    <h5>No bugs! Go write some broken code...</h5>
+    <ul class="collection">
+      <li class="collection-item">
+        <div class="item">
+          <ngx-skeleton-loader count="5" appearance="line"> </ngx-skeleton-loader>
+        </div>
+      </li>
+    </ul>
   </ng-template>
 </div>

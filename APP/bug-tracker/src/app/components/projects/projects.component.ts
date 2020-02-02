@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader'
 import { ProjectService } from '../../services/project.service'
 import { Project } from '../../models/project.model'
 import { User } from '../../models/user.model'
@@ -11,14 +12,12 @@ import { AddBugComponent } from '../add-bug/add-bug.component'
   styleUrls: ['./projects.component.css']
 })
 export class ProjectsComponent implements OnInit {
-
   private projects: Project[];
   private editState: boolean = false;
   private projectToEdit: Project;
   private addBugState: boolean = false;
   private viewBug: boolean = false;
   private projectbugs: Project;
-  private bug: Bug;
 
   constructor(private projectService: ProjectService) { }
 

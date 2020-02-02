@@ -9,6 +9,7 @@ import { AngularFireModule } from '@angular/fire'
 import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireStorageModule } from '@angular/fire/storage'
 import { AngularFireAuthModule } from '@angular/fire/auth'
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { ProjectsComponent } from './components/projects/projects.component'
@@ -46,6 +47,7 @@ import { AddBugComponent } from './components/add-bug/add-bug.component'
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
+    NgxSkeletonLoaderModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatSelectModule,

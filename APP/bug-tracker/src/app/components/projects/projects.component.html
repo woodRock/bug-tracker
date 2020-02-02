@@ -14,14 +14,14 @@
       <a class="secondary-content">
         <i *ngIf="!addBugState" (click)="addBugs($event, project)" class="material-icons">bug_report</i>
         <i *ngIf="!editState" (click)="editProject($event, project)" class="fa fa-pencil"></i>
-        <i class="material-icons" *ngIf="!editState" (click)="deleteProject($event, project)">delete</i>
+        <i *ngIf="!editState" (click)="deleteProject($event, project)" class="material-icons" >delete</i>
         <i *ngIf="editState && projectToEdit.id == project.id" (click)="clearState()" class="fa fa-compress"></i>
       </a>
       <div *ngIf="!viewBug">
-        <i class="material-icons green" (click)="toggleBugView(project)">bug_report</i>
+        <i class="material-icons green circle" (click)="toggleBugView(project)">bug_report</i>
       </div>
       <div *ngIf="viewBug && project.id == projectbugs.id">
-        <i class="material-icons" (click)="toggleBugView()">cancel</i>
+        <i class="material-icons green circle" (click)="toggleBugView()">cancel</i>
         <app-bugs [project]="project"></app-bugs>
       </div>
       <div *ngIf="addBugState && projectToEdit.id == project.id">
@@ -56,8 +56,10 @@
     </li>
   </ul>
 </div>
-
-<ng-template #noItems>
-  <hr>
-  <h5>There are no Projects. Be creative...</h5>
+<ng-template #noProjects>
+  <ul class="card">
+    <li class="card-panel hoverable">
+      <ngx-skeleton-loader count="5" appearance="lines"> </ngx-skeleton-loader>
+    </li>
+  </ul>
 </ng-template>

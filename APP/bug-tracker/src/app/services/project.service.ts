@@ -7,6 +7,10 @@ import { Project } from '../models/project.model'
 import { User } from '../models/user.model'
 import { Bug } from '../models/bug.model'
 
+function serialize<T>(object: T) {
+  return JSON.parse(JSON.stringify(object));
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,18 +21,18 @@ export class ProjectService extends CrudService<Project> {
     super(_afs, 'projects');
   }
 
-  addCollaborator(id: string, user: User){
+  addCollaborator(id: string, user: User) {
     this.afs.collection('projects').doc(id).collection('/collaborators').add(user)
   };
 
-  addBug(pid: string, {id, name, description, priority, state, contributor}: Bug){
+  addBug(pid: string, { id, name, description, priority, state, contributor }: Bug) {
     this.afs.collection('projects/' + pid + '/bugs').add({
-      'bug' : {id, name, description, priority, state, contributor}
+      'bug': { id, name, description, priority, state, contributor }
     });
   }
 
-  deleteBug(pid: string, bid: string){
-    return new Promise<void>((resolve,reject) => {
+  deleteBug(pid: string, bid: string) {
+    return new Promise<void>((resolve, reject) => {
       this.afs.collection('projects/' + pid + '/bugs')
         .doc<Bug>(bid)
         .delete()
@@ -48,5 +52,18 @@ export class ProjectService extends CrudService<Project> {
         })
       })
     )
+  }
+
+  updateBug(project: Project, bug: Bug): Promise<Bug> {
+    return new Promise<Bug>((resolve, reject) => {
+      this.afs.collection('projects/' + project.id + '/bugs')
+        .doc<Bug>(bug.id as string)
+        .set(serialize(bug))
+        .then(() => {
+          resolve({
+            ...bug
+          });
+        });
+    });
   }
 }
