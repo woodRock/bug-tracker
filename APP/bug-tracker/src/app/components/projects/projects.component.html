@@ -1,6 +1,9 @@
 <h1>Projects</h1>
+<form>
+  <input #txtFname placeholder="Project name"/>
+</form>
 <div *ngIf="projects?.length > 0;else noProjects">
-  <ul *ngFor="let project of projects" class="card">
+  <ul *ngFor="let project of projects | searchfilter : 'name' : txtFname.value | sortgrid : '-time'" class="card">
     <li class="card-panel hoverable">
       <strong>
         {{project.name}}
@@ -10,7 +13,7 @@
         {{formatCollaborators(project)}}
       </i>
       <i class="material-icons">{{ project.private ? 'perm_identity' : 'public' }}</i>
-      {{prettyDate(project.time)}}
+      {{project.time}}
       <a class="secondary-content">
         <i *ngIf="!addBugState" (click)="addBugs($event, project)" class="material-icons">bug_report</i>
         <i *ngIf="!editState" (click)="editProject($event, project)" class="fa fa-pencil"></i>
@@ -59,7 +62,7 @@
 <ng-template #noProjects>
   <ul class="card">
     <li class="card-panel hoverable">
-      <ngx-skeleton-loader count="5" appearance="lines"> </ngx-skeleton-loader>
+      <ngx-skeleton-loader count="2" appearance="lines"> </ngx-skeleton-loader>
     </li>
   </ul>
 </ng-template>

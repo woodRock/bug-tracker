@@ -5,6 +5,8 @@ import { Project } from '../../models/project.model'
 import { User } from '../../models/user.model'
 import { Bug } from '../../models/bug.model'
 import { AddBugComponent } from '../add-bug/add-bug.component'
+import { SearchFilterPipe } from '../../util/search-filter-pipe'
+import { SortGridPipe } from '../../util/sort-grid-pipe'
 
 @Component({
   selector: 'app-projects',
@@ -18,6 +20,7 @@ export class ProjectsComponent implements OnInit {
   private addBugState: boolean = false;
   private viewBug: boolean = false;
   private projectbugs: Project;
+  searchText;
 
   constructor(private projectService: ProjectService) { }
 

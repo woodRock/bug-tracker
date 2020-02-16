@@ -23,9 +23,11 @@ import {
   MatButtonModule, MatCardModule, MatDialogModule,
   MatInputModule, MatTableModule, MatToolbarModule,
   MatMenuModule, MatIconModule, MatProgressSpinnerModule } from '@angular/material'
-import { environment } from './../environments/environment';
-import { BugsComponent } from './components/bugs/bugs.component';
+import { environment } from './../environments/environment'
+import { BugsComponent } from './components/bugs/bugs.component'
 import { AddBugComponent } from './components/add-bug/add-bug.component'
+import { SearchFilterPipe } from './util/search-filter-pipe'
+import { SortGridPipe } from './util/sort-grid-pipe'
 
 
 @NgModule({
@@ -37,7 +39,9 @@ import { AddBugComponent } from './components/add-bug/add-bug.component'
     NavbarComponent,
     AddProjectComponent,
     BugsComponent,
-    AddBugComponent
+    AddBugComponent,
+    SearchFilterPipe,
+    SortGridPipe
   ],
   imports: [
     BrowserModule,
