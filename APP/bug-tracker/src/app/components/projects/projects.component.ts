@@ -7,6 +7,9 @@ import { Bug } from '../../models/bug.model'
 import { AddBugComponent } from '../add-bug/add-bug.component'
 import { SearchFilterPipe } from '../../util/search-filter-pipe'
 import { SortGridPipe } from '../../util/sort-grid-pipe'
+import { Router, ActivatedRoute, ParamMap } from '@angular/router'
+import { Observable } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-projects',
@@ -15,58 +18,18 @@ import { SortGridPipe } from '../../util/sort-grid-pipe'
 })
 export class ProjectsComponent implements OnInit {
   private projects: Project[];
-  private editState: boolean = false;
-  private projectToEdit: Project;
-  private addBugState: boolean = false;
-  private viewBug: boolean = false;
-  private projectbugs: Project;
-  searchText;
+  private searchValue: String;
 
-  constructor(private projectService: ProjectService) { }
+  constructor(
+    private service: ProjectService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    this.projectService.list().subscribe(projects => {
+    this.service.list().subscribe(projects => {
       this.projects = projects;
     });
-  }
-
-  deleteProject(event, project: Project) {
-    this.clearState();
-    this.projectService.delete(project.id);
-  }
-
-  editProject(event, project: Project) {
-    this.editState = true;
-    this.projectToEdit = project;
-  }
-
-  addBugs(event, project: Project) {
-    this.addBugState = true;
-    this.projectToEdit = project;
-  }
-
-  updateProject(project: Project) {
-    this.projectService.update(project);
-    this.clearState();
-  }
-
-  clearState() {
-    this.editState = false;
-    this.projectToEdit = null;
-  }
-
-  getBugs(pid: string) {
-    this.projectService.getBugs(pid);
-  }
-
-  toggleBugView(project: Project){
-    this.viewBug = !this.viewBug;
-    this.projectbugs = project;
-  }
-
-  clearBugState() {
-    this.addBugState = false;
-    this.projectToEdit = null;
   }
 
   trim(s: string) {
@@ -81,7 +44,21 @@ export class ProjectsComponent implements OnInit {
     return this.trim(str);
   }
 
+  clearSearch() {
+    this.searchValue = '';
+    console.log("Clear");
+  }
+
   prettyDate(timestamp) {
     // return timestamp.toDate().toString().substring(0,24);
+  }
+
+  goToProject(project: Project) {
+    let projectId = project ? project.id : null;
+    this.router.navigate(['/projects', project.id ]);
+  }
+
+  goToAddProject(){
+    this.router.navigate(['projects/add-project']);
   }
 }

@@ -54,9 +54,24 @@ export class ProjectService extends CrudService<Project> {
     )
   }
 
-  updateBug(project: Project, bug: Bug): Promise<Bug> {
+  getBug(pid: string, bid: string){
+    return this.afs.collection('projects/' + pid + '/bugs')
+      .doc<Bug>(bid)
+      .snapshotChanges()
+      .pipe(
+        map(doc => {
+          if (doc.payload.exists) {
+            const data = doc.payload.data() as Bug;
+            const payloadId = doc.payload.id;
+            return { id: payloadId, ...data };
+          }
+        })
+      )
+  }
+
+  updateBug(pid: string, bug: Bug): Promise<Bug> {
     return new Promise<Bug>((resolve, reject) => {
-      this.afs.collection('projects/' + project.id + '/bugs')
+      this.afs.collection('projects/' + pid + '/bugs')
         .doc<Bug>(bug.id as string)
         .set(serialize(bug))
         .then(() => {

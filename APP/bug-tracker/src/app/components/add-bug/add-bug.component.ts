@@ -1,9 +1,12 @@
-import { Component, OnInit, Input} from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatSelectModule } from '@angular/material/select'
 import { Project } from '../../models/project.model'
 import { Bug } from '../../models/bug.model'
 import { ProjectService } from '../../services/project.service'
+import { Router, ActivatedRoute, ParamMap } from '@angular/router'
+import { Observable } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-add-bugs',
@@ -12,18 +15,27 @@ import { ProjectService } from '../../services/project.service'
 })
 export class AddBugComponent implements OnInit {
 
-  @Input() project: Project;
+  private pid: string;
   private priorities: string[];
   private states: string[];
   private bug: Bug;
 
-  constructor(private projectService: ProjectService) {
+  constructor(
+    private service: ProjectService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {
     this.priorities = ['Minor','Non-Critical','Impaired Functionality','Catastrophic'];
     this.states = ['Active','Test','Verified','Closed','Opened'];
     this.bug = this.newBug();
   }
 
   ngOnInit() {
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => params.get('pid')))
+      .subscribe(pid => {
+        this.pid = this.pid == null ? pid : this.pid + pid;
+      });
   }
 
   onSubmit(){
@@ -31,10 +43,11 @@ export class AddBugComponent implements OnInit {
       this.addBug();
     else
       console.log("Invalid!");
+    this.goToProject();      
   }
 
   addBug(){
-    this.projectService.addBug(this.project.id, this.bug);
+    this.service.addBug(this.pid, this.bug);
     this.bug = this.newBug();
   }
 
@@ -55,5 +68,10 @@ export class AddBugComponent implements OnInit {
       state: '',
       contributor: ''
     }
+  }
+
+  goToProject(){
+    this.router.navigate([{ outlets: { secondary: null } }])
+      .then(() => this.router.navigate(['/projects/' + this.pid]));
   }
 }

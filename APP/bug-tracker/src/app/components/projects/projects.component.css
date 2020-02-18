@@ -1,0 +1,7 @@
+.project li.selected {
+  background-color: #CFD8DC;
+  color: white;
+}
+.project li.selected:hover {
+  background-color: #BBD8DC;
+}

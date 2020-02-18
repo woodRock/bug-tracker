@@ -1,63 +1,33 @@
-<h1>Projects</h1>
-<form>
-  <input #txtFname placeholder="Project name"/>
-</form>
-<div *ngIf="projects?.length > 0;else noProjects">
-  <ul *ngFor="let project of projects | searchfilter : 'name' : txtFname.value | sortgrid : '-time'" class="card">
-    <li class="card-panel hoverable">
-      <strong>
-        {{project.name}}
-      </strong>
-      {{project.description}}
-      <i>
-        {{formatCollaborators(project)}}
-      </i>
-      <i class="material-icons">{{ project.private ? 'perm_identity' : 'public' }}</i>
-      {{project.time}}
-      <a class="secondary-content">
-        <i *ngIf="!addBugState" (click)="addBugs($event, project)" class="material-icons">bug_report</i>
-        <i *ngIf="!editState" (click)="editProject($event, project)" class="fa fa-pencil"></i>
-        <i *ngIf="!editState" (click)="deleteProject($event, project)" class="material-icons" >delete</i>
-        <i *ngIf="editState && projectToEdit.id == project.id" (click)="clearState()" class="fa fa-compress"></i>
-      </a>
-      <div *ngIf="!viewBug">
-        <i class="material-icons green circle" (click)="toggleBugView(project)">bug_report</i>
-      </div>
-      <div *ngIf="viewBug && project.id == projectbugs.id">
-        <i class="material-icons green circle" (click)="toggleBugView()">cancel</i>
-        <app-bugs [project]="project"></app-bugs>
-      </div>
-      <div *ngIf="addBugState && projectToEdit.id == project.id">
-        <app-add-bugs [project]="project"></app-add-bugs>
-      </div>
-      <div *ngIf="editState && projectToEdit.id == project.id">
-        <hr>
-        <form (ngSubmit)="updateProject(project)" class="col s6">
-          <div class="row">
-            <div class="input-field col s6">
-              <input type="text" placeholder="Add Title" [(ngModel)]="project.name" name="name">
-            </div>
-            <div class="input-field col s6">
-              <input type="text" placeholder="Add Title" [(ngModel)]="project.description" name="description">
-            </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s6">
-              <input type="text" placeholder="Add Title" [(ngModel)]="project.collaborators" name="collaborators">
-            </div>
-            <div class="input-field col s6">
-              <label>
-                <input type="checkbox" [(ngModel)]="project.private" name="private">
-                <span>Private</span>
-              </label>
-            </div>
-          </div>
-          <input type="submit" value="Update Project" class="btn orange">
-          <button (click)="deleteProject($event, project)" class="btn red">Delete Project</button>
-        </form>
-      </div>
-    </li>
-  </ul>
+<a (click)="goToAddProject()"><i class="material-icons">add</i></a>
+<div>
+  <nav>
+    <div class="nav-wrapper">
+      <form>
+        <div class="input-field">
+          <input #txtFname id="search" type="search" placeholder="Search Projects ..." required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons" (click)="txtFname.value=''">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+  <div *ngIf="projects?.length > 0;else noProjects">
+    <ul *ngFor="let project of projects | searchfilter : 'name' : txtFname.value | sortgrid : '-time'" class="card project">
+      <li [class.selected]="project.id === selectedId" class="card-panel hoverable">
+        <strong>
+          <a (click)="goToProject(project)">
+            {{project.name}}
+          </a>
+        </strong>
+        {{project.description}}
+        <i>
+          {{formatCollaborators(project)}}
+        </i>
+        <i class="material-icons">{{ project.private ? 'perm_identity' : 'public' }}</i>
+        {{project.time}}
+      </li>
+    </ul>
+  </div>
 </div>
 <ng-template #noProjects>
   <ul class="card">

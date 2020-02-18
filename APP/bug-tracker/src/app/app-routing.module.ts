@@ -7,11 +7,17 @@ import { AddProjectComponent } from './components/add-project/add-project.compon
 import { LoginComponent } from './components/login/login.component'
 import { BugsComponent } from './components/bugs/bugs.component'
 import { AddBugComponent } from './components/add-bug/add-bug.component'
+import { BugComponent } from './components/bug/bug.component'
 
 const routes: Routes = [
+  { path: 'sign-in', component: LoginComponent },
   { path: 'projects', component: ProjectsComponent },
-  { path: 'add-project', component: AddProjectComponent },
-  { path: 'sign-in', component: LoginComponent }
+  { path: 'projects/add-project', component: AddProjectComponent },
+  { path: 'projects/:pid/add-bug', component: AddBugComponent },
+  { path: 'projects/:pid', component: BugsComponent },
+  { path: 'projects/:pid/:bid', component: BugComponent },
+  { path: '',   redirectTo: '/projects', pathMatch: 'full' },
+  // { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

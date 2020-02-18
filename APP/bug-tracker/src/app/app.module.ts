@@ -10,6 +10,13 @@ import { AngularFirestoreModule } from '@angular/fire/firestore'
 import { AngularFireStorageModule } from '@angular/fire/storage'
 import { AngularFireAuthModule } from '@angular/fire/auth'
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader'
+import { AddProjectComponent } from './components/add-project/add-project.component'
+import {
+  MatButtonModule, MatCardModule, MatDialogModule,
+  MatInputModule, MatTableModule, MatToolbarModule,
+  MatMenuModule, MatIconModule, MatProgressSpinnerModule
+} from '@angular/material'
+import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { ProjectsComponent } from './components/projects/projects.component'
@@ -18,17 +25,12 @@ import { UsersComponent } from './components/users/users.component'
 import { NavbarComponent } from './components/navbar/navbar.component'
 import { ProjectService } from './services/project.service'
 import { AuthService } from './services/auth.service'
-import { AddProjectComponent } from './components/add-project/add-project.component'
-import {
-  MatButtonModule, MatCardModule, MatDialogModule,
-  MatInputModule, MatTableModule, MatToolbarModule,
-  MatMenuModule, MatIconModule, MatProgressSpinnerModule } from '@angular/material'
-import { environment } from './../environments/environment'
 import { BugsComponent } from './components/bugs/bugs.component'
 import { AddBugComponent } from './components/add-bug/add-bug.component'
 import { SearchFilterPipe } from './util/search-filter-pipe'
 import { SortGridPipe } from './util/sort-grid-pipe'
-
+import { environment } from './../environments/environment';
+import { BugComponent } from './components/bug/bug.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { SortGridPipe } from './util/sort-grid-pipe'
     BugsComponent,
     AddBugComponent,
     SearchFilterPipe,
-    SortGridPipe
+    SortGridPipe,
+    BugComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,7 @@ import { SortGridPipe } from './util/sort-grid-pipe'
     MatTableModule,
     MatMenuModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
   ],
   providers: [AuthService, ProjectService],
   bootstrap: [AppComponent]

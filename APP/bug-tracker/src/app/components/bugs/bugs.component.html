@@ -1,63 +1,80 @@
+<a (click)="goToProjects()"><i class="material-icons">arrow_back</i></a>
+<div class="secondary-content">
+  <a (click)="goToAddBug()"><i class="material-icons">add</i></a>
+  <a><i (click)="delete()" class="material-icons">delete</i></a>
+  <a><i *ngIf="!editState" (click)="edit()" class="material-icons">edit</i></a>
+  <a><i *ngIf="editState" (click)="clearState()" class="material-icons">compress</i></a>
+</div>
+<div class="card-panel hoverable">
+  <strong>
+    {{project?.name}}
+  </strong>
+  {{project?.description}}
+  <i>
+    {{project?.collaborators}}
+  </i>
+  <i class="material-icons">{{ project?.private ? 'perm_identity' : 'public' }}</i>
+  {{project?.time}}
+</div>
+<div *ngIf="editState">
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Edit</span>
+      <form (ngSubmit)=" update()" class="col s6">
+        <div class="row">
+          <div class="input-field col s6">
+            <input type="text" placeholder="Add Title" [(ngModel)]="project.name" name="name">
+            <label class="active">Name</label>
+          </div>
+          <div class="input-field col s6">
+            <input type="text" placeholder="Add Title" [(ngModel)]="project.description" name="description">
+            <label class="active">Description</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <input type="text" placeholder="Add Title" [(ngModel)]="project.collaborators" name="collaborators">
+            <label class="active">Collaborators</label>
+          </div>
+          <div class="input-field col s6">
+            <label>
+              <input type="checkbox" [(ngModel)]="project.private" name="private">
+              <span>Private</span>
+            </label>
+          </div>
+        </div>
+        <input type="submit" value="Update Project" class="btn orange">
+        <button (click)="clearState()" type="reset" class="btn red">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>
 <div class="card">
-  <h1>Bugs</h1>
+  <nav>
+    <div class="nav-wrapper">
+      <form>
+        <div class="input-field">
+          <input #txtFname id="search" type="search" placeholder="Search Bugs ..." required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons" (click)="txtFname.value=''">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
   <div *ngIf="bugs?.length > 0;else nobugs">
-    <ul *ngFor="let bug of bugs" class="collection">
+    <ul *ngFor="let bug of bugs | searchfilter : 'name' : txtFname.value" class="collection">
       <li class="collection-item avatar">
         <img src="https://lh3.googleusercontent.com/a-/AAuE7mDpvySbHdSFtBArfmx_QHMq-ihl90wdoc-fQSKOhQ" alt="" class="circle">
         <strong>
-          {{bug.bug.name}}
+          <a (click)="goToBug(bug)">
+            {{bug.bug.name}}
+          </a>
         </strong>
         {{bug.bug.description}}
         <span class="new badge red" attr.data-badge-caption="{{bug.bug.state}}"></span>
         <span class="new badge green" attr.data-badge-caption="{{bug.bug.priority}}"></span>
         {{bug.bug.contributor}}
-        <i class="material-icons" (click)="deleteBug(bug.id)">delete</i>
-        <i class="material-icons" (click)="editBug(bug)">edit</i>
       </li>
-      <div *ngIf="editBugState && bugToEdit.id == bug.id">
-        <div class="card">
-          <div class="card-content">
-            <span class="card-title">Edit</span>
-            <form class="col s6" (ngSubmit)="updateBug(project, bug)">
-              <div class="row">
-                <div class="input-field col s6">
-                  <input type="text" placeholder="Add Title" [(ngModel)]="bug.bug.name" name="name">
-                  <label class="active">Name</label>
-                </div>
-                <div class="input-field col s6">
-                  <input type="text" placeholder="Add Title" [(ngModel)]="bug.bug.description" name="description">
-                  <label class="active">Description</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s6">
-                  <mat-form-field>
-                    <mat-label>
-                      <link rel="manifest" href="./manifest.json">Priority</mat-label>
-                    <mat-select [(value)]="bug.bug.priority">
-                      <mat-option value="{{priority}}" *ngFor="let priority of priorities">
-                        {{priority}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-                <div class="input-field col s6">
-                  <mat-form-field>
-                    <mat-label>State</mat-label>
-                    <mat-select [(value)]="bug.bug.state">
-                      <mat-option value="{{state}}" *ngFor="let state of states">
-                        {{state}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                </div>
-              </div>
-              <input type="submit" value="Submit" class=" btn" routerLink="/projects">
-              <button routerLink="/projects" class="btn orange">Cancel</button>
-            </form>
-          </div>
-        </div>
-      </div>
     </ul>
   </div>
   <ng-template #nobugs>

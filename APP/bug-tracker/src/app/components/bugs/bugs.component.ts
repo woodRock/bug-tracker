@@ -1,8 +1,13 @@
-import { Component, OnInit, Input, OnChanges} from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader'
 import { ProjectService } from '../../services/project.service'
 import { Bug } from '../../models/bug.model'
 import { Project } from '../../models/project.model'
+import { Router, ActivatedRoute, ParamMap } from '@angular/router'
+import { Observable } from 'rxjs'
+import { switchMap } from 'rxjs/operators'
+import { SearchFilterPipe } from '../../util/search-filter-pipe'
+import { SortGridPipe } from '../../util/sort-grid-pipe'
 
 @Component({
   selector: 'app-bugs',
@@ -12,38 +17,73 @@ import { Project } from '../../models/project.model'
 export class BugsComponent implements OnInit {
   private priorities: string[];
   private states: string[];
-  bugs: Bug[];
-  @Input() project: Project;
-  bugToEdit: Bug;
-  editBugState: Boolean = false;
+  private bugs: Bug[];
+  private project: Project;
+  private pid: string;
+  private searchValue: string;
+  private editState = false;
 
-  constructor(private projectService: ProjectService) {
-    this.priorities = ['Minor','Non-Critical','Impaired Functionality','Catastrophic'];
-    this.states = ['Active','Test','Verified','Closed','Opened'];
+  constructor(
+    private service: ProjectService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {
+    this.priorities = ['Minor', 'Non-Critical', 'Impaired Functionality', 'Catastrophic'];
+    this.states = ['Active', 'Test', 'Verified', 'Closed', 'Opened'];
   }
 
   ngOnInit() {
-    this.projectService.getBugs(this.project.id).subscribe(bugs => {
-      this.bugs = bugs;
-    });
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.service.getBugs(params.get('pid'))))
+      .subscribe(bugs => {
+        this.bugs = bugs as Bug[]
+      });
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.service.get(params.get('pid'))))
+      .subscribe(p => {
+        this.project = p as Project
+      });
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => params.get('pid')))
+      .subscribe(pid => {
+        this.pid = this.pid == null ? pid : this.pid + pid;
+      });
   }
 
-  deleteBug(bid: string){
-    this.projectService.deleteBug(this.project.id, bid);
-  }
-
-  editBug(bug: Bug){
-    this.bugToEdit = bug;
-    this.editBugState = true;
+  edit(){
+    this.editState = true;
   }
 
   clearState(){
-    this.bugToEdit = null;
-    this.editBugState = false;
+    this.editState = false;
   }
 
-  updateBug(project: Project, bug: Bug){
-    this.projectService.updateBug(project, bug);
+  update(){
+    this.project.id = this.pid;
+    this.service.update(this.project);
     this.clearState();
+  }
+
+  delete(){
+    this.service.delete(this.pid);
+    this.clearState();
+    this.goToProjects();
+  }
+
+  goToProjects() {
+    this.router.navigate([{ outlets: { secondary: null } }])
+      .then(() => this.router.navigate(['/projects']));
+  }
+
+  goToBug(bug: Bug) {
+    let bugId = bug ? bug.id : null;
+    this.router.navigate([{ outlets: { secondary: null } }])
+      .then(() => this.router.navigate(['/projects/' + this.pid + '/' + bugId]));
+  }
+
+  goToAddBug(){
+    this.router.navigate(['projects/' + this.pid + '/' + 'add-bug'])
   }
 }
