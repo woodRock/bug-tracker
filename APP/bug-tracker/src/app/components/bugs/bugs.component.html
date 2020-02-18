@@ -1,10 +1,15 @@
-<a (click)="goToProjects()"><i class="material-icons">arrow_back</i></a>
-<div class="secondary-content">
-  <a (click)="goToAddBug()"><i class="material-icons">add</i></a>
-  <a><i (click)="delete()" class="material-icons">delete</i></a>
-  <a><i *ngIf="!editState" (click)="edit()" class="material-icons">edit</i></a>
-  <a><i *ngIf="editState" (click)="clearState()" class="material-icons">compress</i></a>
-</div>
+<h5>
+  <a (click)="goToProjects()"><i class="material-icons">arrow_back</i></a>
+  Projects
+  <i class="material-icons">chevron_right</i>
+  {{project?.name}}
+  <div class="secondary-content">
+    <a (click)="goToAddBug()"><i class="material-icons">add</i></a>
+    <a><i (click)="delete()" class="material-icons">delete</i></a>
+    <a><i *ngIf="!editState" (click)="edit()" class="material-icons">edit</i></a>
+    <a><i *ngIf="editState" (click)="clearState()" class="material-icons">compress</i></a>
+  </div>
+</h5>
 <div class="card-panel hoverable">
   <strong>
     {{project?.name}}
@@ -14,7 +19,7 @@
     {{project?.collaborators}}
   </i>
   <i class="material-icons">{{ project?.private ? 'perm_identity' : 'public' }}</i>
-  {{project?.time}}
+  {{project?.time | date: 'dd MMM hh:mm'}}
 </div>
 <div *ngIf="editState">
   <div class="card">
@@ -50,21 +55,9 @@
   </div>
 </div>
 <div class="card">
-  <nav>
-    <div class="nav-wrapper">
-      <form>
-        <div class="input-field">
-          <input #txtFname id="search" type="search" placeholder="Search Bugs ..." required>
-          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons" (click)="txtFname.value=''">close</i>
-        </div>
-      </form>
-    </div>
-  </nav>
   <div *ngIf="bugs?.length > 0;else nobugs">
-    <ul *ngFor="let bug of bugs | searchfilter : 'name' : txtFname.value" class="collection">
-      <li class="collection-item avatar">
-        <img src="https://lh3.googleusercontent.com/a-/AAuE7mDpvySbHdSFtBArfmx_QHMq-ihl90wdoc-fQSKOhQ" alt="" class="circle">
+    <ul *ngFor="let bug of bugs" class="collection">
+      <li class="collection-item">
         <strong>
           <a (click)="goToBug(bug)">
             {{bug.bug.name}}

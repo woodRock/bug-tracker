@@ -1,4 +1,7 @@
-<a (click)="goToAddProject()"><i class="material-icons">add</i></a>
+<h5>
+  <a (click)="goToAddProject()"><i class="material-icons">add</i></a>
+  Projects
+</h5>
 <div>
   <nav>
     <div class="nav-wrapper">
@@ -24,7 +27,7 @@
           {{formatCollaborators(project)}}
         </i>
         <i class="material-icons">{{ project.private ? 'perm_identity' : 'public' }}</i>
-        {{project.time}}
+        {{project?.time | date: 'dd MMM hh:mm'}}
       </li>
     </ul>
   </div>

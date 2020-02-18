@@ -1,12 +1,18 @@
-<a (click)="goBackToProject()"><i class="material-icons">arrow_back</i></a>
-<div class="secondary-content">
-  <a (click)="delete()"><i class="material-icons" >delete</i></a>
-  <a><i *ngIf="!editState" (click)="edit()" class="material-icons">edit</i></a>
-  <a><i *ngIf="editState" (click)="clearState()" class="material-icons">compress</i></a>
-</div>
+<h5>
+  <a (click)="goBackToProject()"><i class="material-icons">arrow_back</i></a>
+  Projects
+  <i class="material-icons">chevron_right</i>
+  {{project?.name}}
+  <i class="material-icons">chevron_right</i>
+  {{bug?.bug.name}}
+  <div class="secondary-content">
+    <a (click)="delete()"><i class="material-icons" >delete</i></a>
+    <a><i *ngIf="!editState" (click)="edit()" class="material-icons">edit</i></a>
+    <a><i *ngIf="editState" (click)="clearState()" class="material-icons">compress</i></a>
+  </div>
+</h5>
 <div *ngIf="bug != null;else nobug" class="collection">
-  <div class="collection-item avatar">
-    <img src="https://lh3.googleusercontent.com/a-/AAuE7mDpvySbHdSFtBArfmx_QHMq-ihl90wdoc-fQSKOhQ" alt="" class="circle">
+  <div class="collection-item">
     <strong>
       <a (click)="goToBug(bug)">
         {{bug?.bug.name}}

@@ -6,8 +6,6 @@ import { Project } from '../../models/project.model'
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { Observable } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
-import { SearchFilterPipe } from '../../util/search-filter-pipe'
-import { SortGridPipe } from '../../util/sort-grid-pipe'
 
 @Component({
   selector: 'app-bugs',
@@ -20,7 +18,6 @@ export class BugsComponent implements OnInit {
   private bugs: Bug[];
   private project: Project;
   private pid: string;
-  private searchValue: string;
   private editState = false;
 
   constructor(

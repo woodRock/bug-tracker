@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { Observable } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
 import { Bug } from '../../models/bug.model'
+import { Project } from '../../models/project.model'
 import { ProjectService } from '../../services/project.service'
 
 @Component({
@@ -16,6 +17,7 @@ export class BugComponent implements OnInit {
   private pid: string;
   private bid: string;
   private bug: Bug;
+  private project: Project;
   private editState: Boolean = false;
   private priorities: string[];
   private states: string[];
@@ -46,6 +48,12 @@ export class BugComponent implements OnInit {
       .subscribe(bug => {
         this.bug = bug as Bug
       });
+    this.route.paramMap.pipe(
+      switchMap((params: ParamMap) =>
+        this.service.get(params.get('pid'))))
+      .subscribe(p => {
+        this.project = p as Project
+      });
   }
 
   goBackToProject() {
@@ -73,7 +81,7 @@ export class BugComponent implements OnInit {
     this.service.updateBug(this.pid, this.bug);
   }
 
-  goToProject(){
+  goToProject() {
     this.router.navigate([{ outlets: { secondary: null } }])
       .then(() => this.router.navigate(['/projects/' + this.pid]));
   }
