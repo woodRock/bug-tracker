@@ -8,9 +8,11 @@ import { LoginComponent } from './components/login/login.component'
 import { BugsComponent } from './components/bugs/bugs.component'
 import { AddBugComponent } from './components/add-bug/add-bug.component'
 import { BugComponent } from './components/bug/bug.component'
+import { AddUserComponent } from './components/add-user/add-user.component'
 
 const routes: Routes = [
   { path: 'sign-in', component: LoginComponent },
+  { path: 'register', component: AddUserComponent },
   { path: 'projects', component: ProjectsComponent },
   { path: 'projects/add-project', component: AddProjectComponent },
   { path: 'projects/:pid/add-bug', component: AddBugComponent },

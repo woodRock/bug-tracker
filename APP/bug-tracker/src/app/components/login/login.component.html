@@ -31,9 +31,12 @@
         <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button (click)="signIn()" color="primary">Login</button>
-        <button mat-raised-button (click)="auth.googleSignin()" color="primary">Google</button>
+        <button mat-raised-button (click)="signIn(); clear()" color="primary">Login</button>
+        <button mat-raised-button (click)="goToRegister()" color="primary">Register</button>
       </mat-card-actions>
+      <button mat-raised-button (click)="auth.googleSignin()" class="circle" color="primary">
+        <img height="20px" width=height src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/google-512.png" alt="Google Logo"/>
+      </button>
     </mat-card>
   </ng-template>
 </div>

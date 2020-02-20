@@ -31,6 +31,7 @@ import { SearchFilterPipe } from './util/search-filter-pipe'
 import { SortGridPipe } from './util/sort-grid-pipe'
 import { environment } from './../environments/environment';
 import { BugComponent } from './components/bug/bug.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { BugComponent } from './components/bug/bug.component';
     AddBugComponent,
     SearchFilterPipe,
     SortGridPipe,
-    BugComponent
+    BugComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,

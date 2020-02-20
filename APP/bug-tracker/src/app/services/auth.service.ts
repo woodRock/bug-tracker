@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router'
 import { auth } from 'firebase/app'
 import { AngularFireAuth } from '@angular/fire/auth'
-import { AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore'
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore'
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User } from '../models/user.model';
@@ -14,11 +14,11 @@ export class AuthService {
   user$: Observable<User>;
 
   constructor(
-    private afAuth: AngularFireAuth,
+    private afa: AngularFireAuth,
     private afs: AngularFirestore,
     private router: Router
   ) {
-    this.user$ = this.afAuth.authState.pipe(
+    this.user$ = this.afa.authState.pipe(
       switchMap(user => {
         if (user) {
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
@@ -29,27 +29,58 @@ export class AuthService {
     )
   }
 
-  async googleSignin() {
-    const provider = new auth.GoogleAuthProvider();
-    const credential = await this.afAuth.auth.signInWithPopup(provider);
+  async register(email, password) {
+    this.afa.auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+      console.log("Error Code: " + errorCode);
+      console.log("Error Message: " + errorMessage);
+    });
+  }
+
+  async emailSignIn(email, password) {
+    const credential = await this.afa.auth.signInWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+      console.log("Error Code: " + errorCode);
+      console.log("Error Message: " + errorMessage);
+    });
     return this.updateUserData(credential.user);
   }
 
+  async googleSignin() {
+    const provider = new auth.GoogleAuthProvider();
+    const credential = await this.afa.auth.signInWithPopup(provider);
+    return this.updateUserData(credential.user);
+  }
+
+  private updateUserData({ uid, email, displayName, photoURL }: User) {
+    // Sets user data to firestore on login
+    const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
+    const data = {
+      uid,
+      email,
+      displayName,
+      photoURL,
+    };
+    return userRef.set(data, { merge: true });
+  }
+
   async signOut() {
-    await this.afAuth.auth.signOut();
+    await this.afa.auth.signOut().then(function() {
+      // Success
+    }).catch(function(error) {
+      console.log(error);
+    });
     return this.router.navigate(['/sign-in'])
   }
 
-  private updateUserData({uid, email, displayName, photoURL }: User) {
-      // Sets user data to firestore on login
-      const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
-      const data = {
-        uid,
-        email,
-        displayName,
-        photoURL,
-      };
-      return userRef.set(data, { merge: true });
+  async isLoggedIn() {
+    return this.afa.auth.currentUser != null;
   }
 
 }

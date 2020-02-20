@@ -4,5 +4,6 @@ export interface User extends Entity {
     uid? : string,
     email?: string,
     photoURL?: string,
-    displayName?: string;
+    displayName?: string,
+    password?: string;
 }
