@@ -38,15 +38,9 @@ export class AuthService {
 
   }
 
-  async register(email, password) {
-    this.afa.auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // ...
-      console.log("Error Code: " + errorCode);
-      console.log("Error Message: " + errorMessage);
-    });
+  async register(username, email, password) {
+    const credential = await this.afa.auth.createUserWithEmailAndPassword(email, password);
+    this.updateUserData(credential.user);
   }
 
   async emailSignIn(email, password) {
