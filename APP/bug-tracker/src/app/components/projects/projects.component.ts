@@ -7,9 +7,11 @@ import { Bug } from '../../models/bug.model'
 import { AddBugComponent } from '../add-bug/add-bug.component'
 import { SearchFilterPipe } from '../../util/search-filter-pipe'
 import { SortGridPipe } from '../../util/sort-grid-pipe'
+import { GroupByPipe } from '../../util/group-by-pipe'
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { Observable } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
+import { TimeAgoPipe } from 'time-ago-pipe'
 
 @Component({
   selector: 'app-projects',
@@ -19,6 +21,8 @@ import { switchMap } from 'rxjs/operators'
 export class ProjectsComponent implements OnInit {
   private projects: Project[];
   private searchValue: String;
+  private sortByNewest: boolean = false;
+  private groupByScope: boolean = false;
 
   constructor(
     private service: ProjectService,
@@ -51,6 +55,14 @@ export class ProjectsComponent implements OnInit {
 
   prettyDate(timestamp) {
     // return timestamp.toDate().toString().substring(0,24);
+  }
+
+  toggleTimeSort(){
+    this.sortByNewest = !this.sortByNewest;
+  }
+
+  toggleScopeGroup(){
+    this.groupByScope = !this.groupByScope;
   }
 
   goToProject(project: Project) {

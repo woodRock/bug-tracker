@@ -8,3 +8,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   --primary: rgba(12, 13, 7, 0.62);
   --secondary: rgb(56, 19, 102);
 }
+
+.block {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #4CAF50;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 4px;
+  color: white;
+}
+
+.center {
+  margin: 0 auto;
+}

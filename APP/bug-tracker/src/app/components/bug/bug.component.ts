@@ -5,6 +5,8 @@ import { switchMap } from 'rxjs/operators'
 import { Bug } from '../../models/bug.model'
 import { Project } from '../../models/project.model'
 import { ProjectService } from '../../services/project.service'
+import { AuthService } from '../../services/auth.service'
+import { TimeAgoPipe } from 'time-ago-pipe'
 
 @Component({
   selector: 'app-bug',
@@ -13,7 +15,6 @@ import { ProjectService } from '../../services/project.service'
 })
 export class BugComponent implements OnInit {
 
-  private bugs: Bug[];
   private pid: string;
   private bid: string;
   private bug: Bug;
@@ -26,6 +27,7 @@ export class BugComponent implements OnInit {
     private service: ProjectService,
     private route: ActivatedRoute,
     private router: Router,
+    private auth: AuthService
   ) {
     this.priorities = ['Minor', 'Non-Critical', 'Impaired Functionality', 'Catastrophic'];
     this.states = ['Active', 'Test', 'Verified', 'Closed', 'Opened'];
@@ -77,8 +79,12 @@ export class BugComponent implements OnInit {
   }
 
   update() {
-    console.log(this.bug.id);
+    this.bug.id = this.bid;
     this.service.updateBug(this.pid, this.bug);
+  }
+
+  time() {
+    return this.bug.time;
   }
 
   goToProject() {

@@ -29,6 +29,7 @@
     "materialize-css": "^1.0.0",
     "ngx-skeleton-loader": "^1.2.2",
     "rxjs": "~6.4.0",
+    "time-ago-pipe": "^1.3.2",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },

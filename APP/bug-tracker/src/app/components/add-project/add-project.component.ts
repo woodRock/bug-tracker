@@ -32,6 +32,7 @@ export class AddProjectComponent implements OnInit, AfterViewInit {
   }
 
   addProject() {
+    this.project.time = new Date(); // Ensures the time is when submitted
     this.projectService.add(this.project);
     this.clearProject()
   }

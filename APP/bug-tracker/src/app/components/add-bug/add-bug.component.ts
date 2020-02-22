@@ -43,10 +43,11 @@ export class AddBugComponent implements OnInit {
       this.addBug();
     else
       console.log("Invalid!");
-    this.goToProject();      
+    this.goToProject();
   }
 
   addBug(){
+    this.bug.time = new Date();
     this.service.addBug(this.pid, this.bug);
     this.bug = this.newBug();
   }
@@ -66,7 +67,8 @@ export class AddBugComponent implements OnInit {
       description: '',
       priority: '',
       state: '',
-      contributor: ''
+      contributor: '',
+      time: new Date()
     }
   }
 

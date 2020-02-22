@@ -1,6 +1,8 @@
-.parent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.google {
+  background-color: grey;
+  color: white;
+}
+
+.email {
+  background-color: red;
 }

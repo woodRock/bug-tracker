@@ -1,79 +1,93 @@
-<h5>
-  <a (click)="goBackToProject()"><i class="material-icons">arrow_back</i></a>
-  Projects
-  <i class="material-icons">chevron_right</i>
-  {{project?.name}}
-  <i class="material-icons">chevron_right</i>
-  {{bug?.bug.name}}
-  <div class="secondary-content">
-    <a (click)="delete()"><i class="material-icons" >delete</i></a>
-    <a><i *ngIf="!editState" (click)="edit()" class="material-icons">edit</i></a>
-    <a><i *ngIf="editState" (click)="clearState()" class="material-icons">compress</i></a>
+<div *ngIf="auth.user$ | async as user">
+  <div class="secondary-col">
+    <h5>
+      <a (click)="goBackToProject()"><i class="material-icons">arrow_back</i></a>
+      Projects
+      <i class="material-icons">chevron_right</i>
+      {{project?.name}}
+      <i class="material-icons">chevron_right</i>
+      {{bug?.name}}
+    </h5>
   </div>
-</h5>
-<div *ngIf="bug != null;else nobug" class="collection">
-  <div class="collection-item">
-    <strong>
-      <a (click)="goToBug(bug)">
-        {{bug?.bug.name}}
-      </a>
-    </strong>
-    {{bug?.bug.description}}
-    <span class="new badge red" attr.data-badge-caption="{{bug?.bug.state}}"></span>
-    <span class="new badge green" attr.data-badge-caption="{{bug?.bug.priority}}"></span>
-    {{bug?.bug.contributor}}
-  </div>
-  <div *ngIf="editState">
-    <div class="card">
-      <div class="card-content">
-        <span class="card-title">Edit</span>
-        <form class="col s6" (ngSubmit)="update(bug)">
-          <div class="row">
-            <div class="input-field col s6">
-              <input type="text" placeholder="Add Title" [(ngModel)]="bug?.bug.name" name="name">
-              <label class="active">Name</label>
+  <div *ngIf="bug != null;else nobug">
+    <h4>
+      <strong>
+        {{bug?.name}}
+      </strong>
+      <div class="secondary-content">
+        <a (click)="delete()"><i class="material-icons icon-red">delete</i></a>
+        <a><i *ngIf="!editState" (click)="edit()" class="material-icons">edit</i></a>
+        <a><i *ngIf="editState" (click)="clearState()" class="material-icons">compress</i></a>
+      </div>
+    </h4>
+    <hr>
+    <div class="collection">
+      <div class="collection-item bug-description-header">
+        <strong>{{user.displayName}}</strong>
+        <div class="secondary-col">{{ bug?.time | timeAgo }}</div>
+      </div>
+      <div class="collection-item avatar">
+        <img src="{{user.photoURL}}" alt="" class="circle">
+        {{bug?.description}}
+        {{bug?.contributor}}
+        <div class="secondary-content">
+          <span class="new badge tag" attr.data-badge-caption="{{bug?.state}}"></span>
+          <span class="new badge tag" attr.data-badge-caption="{{bug?.priority}}"></span>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="editState">
+      <div class="card">
+        <div class="card-content">
+          <span class="card-title">Edit</span>
+          <form class="col s6" (ngSubmit)="update(bug)">
+            <div class="row">
+              <div class="input-field col s6">
+                <input type="text" placeholder="Add Title" [(ngModel)]="bug.name" name="name">
+                <label class="active">Name</label>
+              </div>
+              <div class="input-field col s6">
+                <input type="text" placeholder="Add Title" [(ngModel)]="bug.description" name="description">
+                <label class="active">Description</label>
+              </div>
             </div>
-            <div class="input-field col s6">
-              <input type="text" placeholder="Add Title" [(ngModel)]="bug?.bug.description" name="description">
-              <label class="active">Description</label>
+            <div class="row">
+              <div class="input-field col s6">
+                <mat-form-field>
+                  <mat-label>
+                    <link rel="manifest" href="./manifest.json">Priority</mat-label>
+                  <mat-select [(value)]="bug.priority">
+                    <mat-option value="{{priority}}" *ngFor="let priority of priorities">
+                      {{priority}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <div class="input-field col s6">
+                <mat-form-field>
+                  <mat-label>State</mat-label>
+                  <mat-select [(value)]="bug.state">
+                    <mat-option value="{{state}}" *ngFor="let state of states">
+                      {{state}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="input-field col s6">
-              <mat-form-field>
-                <mat-label>
-                  <link rel="manifest" href="./manifest.json">Priority</mat-label>
-                <mat-select [(value)]="bug?.bug.priority">
-                  <mat-option value="{{priority}}" *ngFor="let priority of priorities">
-                    {{priority}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="input-field col s6">
-              <mat-form-field>
-                <mat-label>State</mat-label>
-                <mat-select [(value)]="bug?.bug.state">
-                  <mat-option value="{{state}}" *ngFor="let state of states">
-                    {{state}}
-                  </mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-          </div>
-          <input (click)="clearState(); update(bug)" type="reset" value="Submit" class="btn">
-          <button (click)="clearState()" type="reset" class="btn orange">Cancel</button>
-        </form>
+            <input (click)="clearState(); update(bug)" type="reset" value="Submit" class="btn">
+            <button (click)="clearState()" type="reset" class="btn orange">Cancel</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
+  <ng-template #nobug>
+    <ul class="collection">
+      <li class="collection-item">
+        <div class="item">
+          <ngx-skeleton-loader count="2" appearance="line"> </ngx-skeleton-loader>
+        </div>
+      </li>
+    </ul>
+  </ng-template>
 </div>
-<ng-template #nobug>
-  <ul class="collection">
-    <li class="collection-item">
-      <div class="item">
-        <ngx-skeleton-loader count="2" appearance="line"> </ngx-skeleton-loader>
-      </div>
-    </li>
-  </ul>
-</ng-template>

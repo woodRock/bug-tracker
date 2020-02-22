@@ -16,6 +16,7 @@ import {
   MatInputModule, MatTableModule, MatToolbarModule,
   MatMenuModule, MatIconModule, MatProgressSpinnerModule
 } from '@angular/material'
+import { TimeAgoPipe } from 'time-ago-pipe'
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
@@ -29,9 +30,11 @@ import { BugsComponent } from './components/bugs/bugs.component'
 import { AddBugComponent } from './components/add-bug/add-bug.component'
 import { SearchFilterPipe } from './util/search-filter-pipe'
 import { SortGridPipe } from './util/sort-grid-pipe'
+import { GroupByPipe } from './util/group-by-pipe'
 import { environment } from './../environments/environment';
 import { BugComponent } from './components/bug/bug.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: [
@@ -45,8 +48,11 @@ import { AddUserComponent } from './components/add-user/add-user.component';
     AddBugComponent,
     SearchFilterPipe,
     SortGridPipe,
+    GroupByPipe,
     BugComponent,
-    AddUserComponent
+    TimeAgoPipe,
+    AddUserComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +74,7 @@ import { AddUserComponent } from './components/add-user/add-user.component';
     MatTableModule,
     MatMenuModule,
     MatIconModule,
-    MatProgressSpinnerModule,
+    MatProgressSpinnerModule
   ],
   providers: [AuthService, ProjectService],
   bootstrap: [AppComponent]

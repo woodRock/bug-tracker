@@ -1,13 +1,17 @@
-<h5>
-  <a (click)="goToAddProject()"><i class="material-icons">add</i></a>
-  Projects
-</h5>
+<div class="secondary-col">
+  <h5>
+    Projects
+    <div class="secondary-content">
+      <a (click)="goToAddProject()"><i class="material-icons">add</i></a>
+    </div>
+  </h5>
+</div>
 <div>
   <nav>
     <div class="nav-wrapper">
       <form>
         <div class="input-field">
-          <input #txtFname id="search" type="search" placeholder="Search Projects ..." required>
+          <input #txtFname id="search" type="search" placeholder="Search projects ..." required>
           <label class="label-icon" for="search"><i class="material-icons">search</i></label>
           <i class="material-icons" (click)="txtFname.value=''">close</i>
         </div>
@@ -15,21 +19,41 @@
     </div>
   </nav>
   <div *ngIf="projects?.length > 0;else noProjects">
-    <ul *ngFor="let project of projects | searchfilter : 'name' : txtFname.value | sortgrid : '-time'" class="card project">
-      <li [class.selected]="project.id === selectedId" class="card-panel hoverable">
-        <strong>
-          <a (click)="goToProject(project)">
-            {{project.name}}
-          </a>
-        </strong>
-        {{project.description}}
-        <i>
-          {{formatCollaborators(project)}}
-        </i>
-        <i class="material-icons">{{ project.private ? 'perm_identity' : 'public' }}</i>
-        {{project?.time | date: 'dd MMM hh:mm'}}
-      </li>
-    </ul>
+    <table>
+      <tr>
+        <th>name</th>
+        <th>
+          scope
+        </th>
+        <th>
+          created
+          <i (click)="toggleTimeSort()" *ngIf="sortByNewest" class="material-icons">arrow_drop_down</i>
+          <i (click)="toggleTimeSort()" *ngIf="!sortByNewest" class="material-icons">arrow_drop_up</i>
+        </th>
+      </tr>
+      <tr *ngFor=
+        "let project of projects |
+        searchfilter : 'name' : txtFname.value |
+        sortgrid : (sortByNewest ? '-time' : 'time')">
+        <td>
+          <strong>
+            <a (click)="goToProject(project)">
+              {{project.name}}
+            </a>
+          </strong>
+        </td>
+        <td>
+          <div class="secondary-col">
+            <i class="material-icons">{{ project.private ? 'perm_identity' : 'public' }}</i>
+          </div>
+        </td>
+        <td>
+          <div class="secondary-col">
+            {{project?.time | timeAgo }}
+          </div>
+        </td>
+      </tr>
+    </table>
   </div>
 </div>
 <ng-template #noProjects>

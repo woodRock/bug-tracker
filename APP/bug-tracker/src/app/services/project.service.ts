@@ -29,14 +29,16 @@ export class ProjectService extends CrudService<Project> {
     this.collection = this.afs.collection(this.collectionName);
   }
 
+  refresh(){
+    this.collectionName = 'users/' + this.service.uid + '/projects';
+  }
+
   addCollaborator(id: string, user: User) {
     this.collection.doc(id).collection('/collaborators').add(user)
   };
 
-  addBug(pid: string, { id, name, description, priority, state, contributor }: Bug) {
-    this.afs.collection(this.collectionName + '/' + pid + '/bugs').add({
-      'bug': { id, name, description, priority, state, contributor }
-    });
+  addBug(pid: string, bug: Bug) {
+    this.afs.collection(this.collectionName + '/' + pid + '/bugs').add(serialize(bug));
   }
 
   deleteBug(pid: string, bid: string) {

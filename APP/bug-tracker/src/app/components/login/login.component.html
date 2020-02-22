@@ -1,42 +1,56 @@
-<div class="parent">
+<div>
   <div *ngIf="service.user$ | async as user; else login">
-    <strong>You are Signed In! {{user.displayName}} </strong>
+    <h5>
+      Account
+    </h5>
+    <strong>username:</strong> {{user.displayName}}
+    <p></p>
+    <strong>email:</strong> {{user.email}}
     <hr>
     <button class="btn red" (click)="service.signOut()">Sign Out</button>
   </div>
   <ng-template #login>
-    <mat-card style="text-align:center" class="example-card">
-      <mat-card-header>
-        <mat-card-title>Login</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <form class="example-form">
-          <table class="example-full-width" cellspacing="0">
-            <tr>
-              <td>
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
-                </mat-form-field>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <mat-form-field class="example-full-width">
-                  <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
-                </mat-form-field>
-              </td>
-            </tr>
-          </table>
-        </form>
-        <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-raised-button (click)="signIn(); clear()" color="primary">Login</button>
-        <button mat-raised-button (click)="goToRegister()" color="primary">Register</button>
-      </mat-card-actions>
-      <button mat-raised-button (click)="service.googleSignin()" class="circle" color="primary">
-        <img height="20px" width=height src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/google-512.png" alt="Google Logo"/>
-      </button>
-    </mat-card>
+    <div class="center">
+      <i class="material-icons red circle">bug_report</i>
+      <h5>
+        Sign In to Bug-Tracker
+      </h5>
+      <div class="card">
+        <div class="card-content">
+          <form class="col s6">
+            <div type="text" class="input-field col s6">
+              <input [(ngModel)]="username" name="username" required>
+              <label class="active">Email</label>
+            </div>
+            <div class="input-field col s6">
+              <a (click)="goToForgotPassword()" class="secondary-content">Forgot password?</a>
+              <input type="password" [(ngModel)]="password" name="password" required>
+              <label class="active">Password</label>
+            </div>
+          </form>
+          <div>
+            <button class="block red"(click)="signIn(); clear()">
+              <i class="material-icons">email</i>
+              Sign in with Email
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <button class="block google" (click)="service.googleSignin()">
+            <img height="20px" width=height src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/google-512.png" alt="Google Logo" />
+            Sign in with Google
+          </button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div>
+            New to Bug-Tracker?
+            <a (click)="goToRegister()">Create an account</a>
+          </div>
+        </div>
+        </div>
+    </div>
   </ng-template>
-</div>

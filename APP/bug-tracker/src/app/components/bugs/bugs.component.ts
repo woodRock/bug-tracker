@@ -6,6 +6,9 @@ import { Project } from '../../models/project.model'
 import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 import { Observable } from 'rxjs'
 import { switchMap } from 'rxjs/operators'
+import { TimeAgoPipe } from 'time-ago-pipe'
+import { SortGridPipe } from '../../util/sort-grid-pipe'
+import { GroupByPipe } from '../../util/group-by-pipe'
 
 @Component({
   selector: 'app-bugs',
@@ -18,7 +21,8 @@ export class BugsComponent implements OnInit {
   private bugs: Bug[];
   private project: Project;
   private pid: string;
-  private editState = false;
+  private editState: boolean = false;
+  private searchValue: string;
 
   constructor(
     private service: ProjectService,

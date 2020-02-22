@@ -80,4 +80,8 @@ export class AuthService {
   async isLoggedIn() {
     return this.afa.auth.currentUser != null;
   }
+
+  sendPasswordResetEmail(email){
+    this.afa.auth.sendPasswordResetEmail(email);
+  }
 }

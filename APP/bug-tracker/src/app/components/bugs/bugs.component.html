@@ -1,25 +1,35 @@
-<h5>
-  <a (click)="goToProjects()"><i class="material-icons">arrow_back</i></a>
-  Projects
-  <i class="material-icons">chevron_right</i>
-  {{project?.name}}
-  <div class="secondary-content">
-    <a (click)="goToAddBug()"><i class="material-icons">add</i></a>
-    <a><i (click)="delete()" class="material-icons">delete</i></a>
-    <a><i *ngIf="!editState" (click)="edit()" class="material-icons">edit</i></a>
-    <a><i *ngIf="editState" (click)="clearState()" class="material-icons">compress</i></a>
-  </div>
-</h5>
-<div class="card-panel hoverable">
-  <strong>
+<div class="secondary-col">
+  <h5>
+    <a (click)="goToProjects()"><i class="material-icons">arrow_back</i></a>
+    Projects
+    <i class="material-icons">chevron_right</i>
     {{project?.name}}
-  </strong>
-  {{project?.description}}
-  <i>
-    {{project?.collaborators}}
-  </i>
-  <i class="material-icons">{{ project?.private ? 'perm_identity' : 'public' }}</i>
-  {{project?.time | date: 'dd MMM hh:mm'}}
+  </h5>
+</div>
+<div>
+  <h4>
+    <strong>
+      {{project?.name}}
+    </strong>
+    <div class="secondary-content">
+      <a (click)="goToAddBug()"><i class="material-icons">add</i></a>
+      <a><i (click)="delete()" class="material-icons icon-red">delete</i></a>
+      <a><i *ngIf="!editState" (click)="edit()" class="material-icons">edit</i></a>
+      <a><i *ngIf="editState" (click)="clearState()" class="material-icons">compress</i></a>
+    </div>
+  </h4>
+  <hr>
+  <div class="collection">
+    <div class="collection-item">
+      {{project?.description}}
+    </div>
+    <div class="collection-item project-description-header">
+      <strong>{{project?.collaborators}}</strong>
+      <div class="secondary-col">{{ project?.time | timeAgo }}</div>
+      <i class="material-icons">{{ project?.private ? 'perm_identity' : 'public' }}</i>
+    </div>
+  </div>
+  <hr>
 </div>
 <div *ngIf="editState">
   <div class="card">
@@ -55,20 +65,42 @@
   </div>
 </div>
 <div class="card">
+  <nav>
+    <div class="nav-wrapper">
+      <form>
+        <div class="input-field">
+          <input #txtFname id="search" type="search" placeholder="Search bugs ..." required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons" (click)="txtFname.value=''">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
   <div *ngIf="bugs?.length > 0;else nobugs">
-    <ul *ngFor="let bug of bugs" class="collection">
-      <li class="collection-item">
-        <strong>
-          <a (click)="goToBug(bug)">
-            {{bug.bug.name}}
-          </a>
-        </strong>
-        {{bug.bug.description}}
-        <span class="new badge red" attr.data-badge-caption="{{bug.bug.state}}"></span>
-        <span class="new badge green" attr.data-badge-caption="{{bug.bug.priority}}"></span>
-        {{bug.bug.contributor}}
-      </li>
-    </ul>
+    <table>
+      <tr>
+        <th>name</th>
+        <th>priority</th>
+        <th>state</th>
+        <th>time</th>
+      </tr>
+      <tr *ngFor="let bug of bugs | searchfilter : 'name' : txtFname.value">
+        <td>
+          <div >
+            <strong><a (click)="goToBug(bug)">{{bug.name}}</a></strong>
+          </div>
+        </td>
+        <td>
+          <span class="new badge red" attr.data-badge-caption="{{bug.state}}"></span>
+        </td>
+        <td>
+          <span class="new badge green" attr.data-badge-caption="{{bug.priority}}"></span>
+        </td>
+        <td>
+          {{bug.time | timeAgo }}
+        </td>
+      </tr>
+    </table>
   </div>
   <ng-template #nobugs>
     <ul class="collection">

@@ -5,5 +5,6 @@ export interface Bug extends Entity {
   description?: string,
   priority?: string,
   state?: string,
-  contributor?: string
+  contributor?: string,
+  time?: Date
 }

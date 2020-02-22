@@ -1,28 +1,29 @@
-<a (click)="goToLogin()"><i class="material-icons">arrow_back</i></a>
+<div class="center">
+  <i class="material-icons red circle">bug_report</i>
+  <h5>
+    <!-- <a (click)="goToLogin()"><i class="material-icons">arrow_back</i></a> -->
+    Create your account
+  </h5>
+</div>
 <div class="card">
   <div class="card-content">
-    <span class="card-title">Create an Account</span>
     <form class="col s6">
-      <div class="row">
-        <div class="input-field col s6">
-          <input type="text" placeholder="Username" [(ngModel)]="user.displayName" name="username" required>
-          <label class="active">Username</label>
-        </div>
+      <div class="input-field col s6">
+        <input type="text" [(ngModel)]="user.displayName" name="username" required>
+        <label class="active">Username</label>
       </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input type="text" placeholder="Email" [(ngModel)]="user.email" name="email" required>
-          <label class="active">Email</label>
-        </div>
+      <div class="input-field col s6">
+        <input type="text" [(ngModel)]="user.email" name="email" required>
+        <label class="active">Email</label>
       </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <input type="password" placeholder="****" [(ngModel)]="user.password" name="password" required>
-          <label class="active">Password</label>
-        </div>
+      <div class="input-field col s6">
+        <input type="password" [(ngModel)]="user.password" name="password" required>
+        <label class="active">Password</label>
       </div>
-      <button (click)="submit()" type="submit reset" class=" btn">Submit</button>
-      <button (click)="goToLogin()" type="reset" class="btn orange">Cancel</button>
+      <div>
+        Make sure it's at least 15 characters OR at least 8 characters including a number and a lowercase letter.
+      </div>
+      <button (click)="submit()" type="submit reset" class="block">Sign up for Bug-Tracker</button>
     </form>
   </div>
 </div>
