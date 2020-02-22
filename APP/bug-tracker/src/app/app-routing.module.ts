@@ -12,14 +12,14 @@ import { AddUserComponent } from './components/add-user/add-user.component'
 
 const routes: Routes = [
   { path: 'sign-in', component: LoginComponent },
-  { path: 'register', component: AddUserComponent },
+  { path: 'sign-in/register', component: AddUserComponent },
   { path: 'projects', component: ProjectsComponent },
   { path: 'projects/add-project', component: AddProjectComponent },
   { path: 'projects/:pid/add-bug', component: AddBugComponent },
   { path: 'projects/:pid', component: BugsComponent },
   { path: 'projects/:pid/:bid', component: BugComponent },
-  { path: '',   redirectTo: '/projects', pathMatch: 'full' },
-  // { path: '**', redirectTo: '' }
+  { path: '',   redirectTo: '/sign-in', pathMatch: 'full' },
+  { path: '**', redirectTo: '/sign-in' }
 ];
 
 @NgModule({

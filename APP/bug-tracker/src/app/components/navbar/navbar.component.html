@@ -8,6 +8,18 @@
     <span class="align-center"></span>
     <span class="example-spacer"></span>
     <button routerLink="projects" routerLinkActive="active" mat-button>Projects</button>
-    <button routerLink="sign-in" routerLinkActive="active" mat-button>Account</button>
+    <div *ngIf="service.photoURL != ''"
+    routerLink="sign-in" routerLinkActive="active">
+      <button mat-button>
+        <img src="{{service.photoURL}}" alt="" class="circle" height="30px" width=height
+        >
+      </button>
+    </div>
+    <div *ngIf="service.photoURL == ''">
+      <button mat-button
+      routerLink="sign-in" routerLinkActive="active">
+        <i class="material-icons">account_circle</i>
+      </button>
+    </div>
   </mat-toolbar-row>
 </mat-toolbar>

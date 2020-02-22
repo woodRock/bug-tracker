@@ -14,31 +14,27 @@ export class LoginComponent implements OnInit {
   password: string = '';
   loading: boolean = false;
 
-  constructor(public auth: AuthService, private router: Router) { }
+  constructor(private service: AuthService, private router: Router) { }
 
   signIn(): void {
-    if (this.invalid())
-      return;
-    this.auth.emailSignIn(this.username, this.password);
-    if (this.auth.isLoggedIn()){
-      
-    }
+    if (!this.invalid())
+      this.service.emailSignIn(this.username, this.password);
   }
 
   goToRegister() {
-    this.router.navigate(['/register']);
+    this.router.navigate(['sign-in/register']);
   }
 
-  clear(){
+  clear() {
     this.username = '';
     this.password = '';
   }
 
-  invalid(){
+  invalid() {
     return this.username == '' || this.password == '';
   }
 
-  goToProjects(){
+  goToProjects() {
     this.router.navigate(['/projects']);
   }
 

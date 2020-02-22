@@ -12,6 +12,8 @@ import { User } from '../models/user.model';
 })
 export class AuthService {
   user$: Observable<User>;
+  uid: string = '';
+  photoURL: string = '';
 
   constructor(
     private afa: AngularFireAuth,
@@ -27,6 +29,13 @@ export class AuthService {
         }
       })
     )
+    this.afa.authState.subscribe(user => {
+      if (user){
+         this.uid = user.uid;
+         this.photoURL = user.photoURL;
+       }
+    })
+
   }
 
   async register(email, password) {
@@ -41,14 +50,7 @@ export class AuthService {
   }
 
   async emailSignIn(email, password) {
-    const credential = await this.afa.auth.signInWithEmailAndPassword(email, password).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // ...
-      console.log("Error Code: " + errorCode);
-      console.log("Error Message: " + errorMessage);
-    });
+    const credential = await this.afa.auth.signInWithEmailAndPassword(email, password);
     return this.updateUserData(credential.user);
   }
 
@@ -76,11 +78,12 @@ export class AuthService {
     }).catch(function(error) {
       console.log(error);
     });
+    this.uid = '';
+    this.photoURL = '';
     return this.router.navigate(['/sign-in'])
   }
 
   async isLoggedIn() {
     return this.afa.auth.currentUser != null;
   }
-
 }

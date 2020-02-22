@@ -1,8 +1,8 @@
 <div class="parent">
-  <div *ngIf="auth.user$ | async as user; else login">
-    <strong>You are Signed In! {{auth.user$.displayName}} </strong>
+  <div *ngIf="service.user$ | async as user; else login">
+    <strong>You are Signed In! {{user.displayName}} </strong>
     <hr>
-    <button class="btn red" (click)="auth.signOut()">Sign Out</button>
+    <button class="btn red" (click)="service.signOut()">Sign Out</button>
   </div>
   <ng-template #login>
     <mat-card style="text-align:center" class="example-card">
@@ -34,7 +34,7 @@
         <button mat-raised-button (click)="signIn(); clear()" color="primary">Login</button>
         <button mat-raised-button (click)="goToRegister()" color="primary">Register</button>
       </mat-card-actions>
-      <button mat-raised-button (click)="auth.googleSignin()" class="circle" color="primary">
+      <button mat-raised-button (click)="service.googleSignin()" class="circle" color="primary">
         <img height="20px" width=height src="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/google-512.png" alt="Google Logo"/>
       </button>
     </mat-card>

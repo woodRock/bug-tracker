@@ -3,6 +3,7 @@ import { Observable } from 'rxjs'
 import { take, map } from 'rxjs/operators'
 import { AngularFirestore } from '@angular/fire/firestore'
 import { CrudService } from './crud.service'
+import { AuthService } from './auth.service'
 import { Project } from '../models/project.model'
 import { User } from '../models/user.model'
 import { Bug } from '../models/bug.model'
@@ -17,23 +18,30 @@ function serialize<T>(object: T) {
 
 export class ProjectService extends CrudService<Project> {
 
-  constructor(_afs: AngularFirestore) {
-    super(_afs, 'projects');
+  private collectionName: string;
+
+  constructor(
+    private _afs: AngularFirestore,
+    private service: AuthService
+  ) {
+    super(_afs, 'users');
+    this.collectionName = 'users/' + this.service.uid + '/projects';
+    this.collection = this.afs.collection(this.collectionName);
   }
 
   addCollaborator(id: string, user: User) {
-    this.afs.collection('projects').doc(id).collection('/collaborators').add(user)
+    this.collection.doc(id).collection('/collaborators').add(user)
   };
 
   addBug(pid: string, { id, name, description, priority, state, contributor }: Bug) {
-    this.afs.collection('projects/' + pid + '/bugs').add({
+    this.afs.collection(this.collectionName + '/' + pid + '/bugs').add({
       'bug': { id, name, description, priority, state, contributor }
     });
   }
 
   deleteBug(pid: string, bid: string) {
     return new Promise<void>((resolve, reject) => {
-      this.afs.collection('projects/' + pid + '/bugs')
+      this.afs.collection(this.collectionName + '/' + pid + '/bugs')
         .doc<Bug>(bid)
         .delete()
         .then(() => {
@@ -43,7 +51,7 @@ export class ProjectService extends CrudService<Project> {
   }
 
   getBugs(pid: string): Observable<Bug[]> {
-    return this.afs.collection('projects/' + pid + '/bugs').snapshotChanges().pipe(
+    return this.afs.collection(this.collectionName + '/' + pid + '/bugs').snapshotChanges().pipe(
       map(changes => {
         return changes.map(a => {
           const data = a.payload.doc.data() as Bug;
@@ -55,7 +63,7 @@ export class ProjectService extends CrudService<Project> {
   }
 
   getBug(pid: string, bid: string){
-    return this.afs.collection('projects/' + pid + '/bugs')
+    return this.afs.collection(this.collectionName + '/' + pid + '/bugs')
       .doc<Bug>(bid)
       .snapshotChanges()
       .pipe(
@@ -71,7 +79,7 @@ export class ProjectService extends CrudService<Project> {
 
   updateBug(pid: string, bug: Bug): Promise<Bug> {
     return new Promise<Bug>((resolve, reject) => {
-      this.afs.collection('projects/' + pid + '/bugs')
+      this.afs.collection(this.collectionName + '/' + pid + '/bugs')
         .doc<Bug>(bug.id as string)
         .set(serialize(bug))
         .then(() => {

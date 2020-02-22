@@ -13,7 +13,7 @@ function serialize<T>(object: T) {
 })
 
 export class CrudService<T extends Entity> {
-  private collection: AngularFirestoreCollection<T>;
+  protected collection: AngularFirestoreCollection<T>;
 
   constructor(protected afs: AngularFirestore, collectionName: string) {
     this.collection = this.afs.collection(collectionName);

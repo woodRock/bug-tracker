@@ -3,6 +3,7 @@ import {
   MatButtonModule, MatCardModule, MatDialogModule, MatInputModule, MatTableModule,
   MatToolbarModule, MatMenuModule,MatIconModule, MatProgressSpinnerModule
 } from '@angular/material';
+import { AuthService } from '../../services/auth.service'
 
 @Component({
   selector: 'app-navbar',
@@ -11,7 +12,7 @@ import {
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: AuthService) { }
 
   ngOnInit() {
   }
