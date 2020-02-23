@@ -10,76 +10,88 @@
     </h5>
   </div>
   <div *ngIf="bug != null;else nobug">
+    <div *ngIf="!editState">
+      <h4>
+        <strong>
+          {{bug?.name}}
+        </strong>
+        <div class="secondary-content">
+          <a (click)="delete()"><i class="material-icons icon-red">delete</i></a>
+          <a><i (click)="toggleEditState()" class="material-icons">edit</i></a>
+        </div>
+      </h4>
+      <hr>
+      <ul class="collection">
+        <li class="collection-item bug-description-header">
+          <strong>{{user.displayName}}</strong>
+          <span>{{" "}}</span>
+          <a class="secondary-col">{{ bug?.time | timeAgo }}</a>
+          <div class="secondary-content">
+            <span class="new badge tag" attr.data-badge-caption="{{bug?.state}}"></span>
+            <span class="new badge tag" attr.data-badge-caption="{{bug?.priority}}"></span>
+          </div>
+        </li>
+        <li class="collection-item avatar">
+          <img src="{{user.photoURL}}" alt="" class="circle">
+          {{bug?.description}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="editState">
     <h4>
       <strong>
-        {{bug?.name}}
+        <input [(ngModel)]="bug.name" type="text" class="title-edit" maxlength="20" size="20">
       </strong>
       <div class="secondary-content">
         <a (click)="delete()"><i class="material-icons icon-red">delete</i></a>
-        <a><i *ngIf="!editState" (click)="edit()" class="material-icons">edit</i></a>
-        <a><i *ngIf="editState" (click)="clearState()" class="material-icons">compress</i></a>
+        <a><i (click)="toggleEditState()" class="material-icons">compress</i></a>
       </div>
     </h4>
     <hr>
-    <div class="collection">
-      <div class="collection-item bug-description-header">
+    <ul class="collection">
+      <li class="collection-item bug-description-header">
         <strong>{{user.displayName}}</strong>
-        <div class="secondary-col">{{ bug?.time | timeAgo }}</div>
-      </div>
-      <div class="collection-item avatar">
+        <span>{{" "}}</span>
+        <a class="secondary-col">{{ bug?.time | timeAgo }}</a>
+      </li>
+      <li class="collection-item avatar">
         <img src="{{user.photoURL}}" alt="" class="circle">
-        {{bug?.description}}
-        {{bug?.contributor}}
-        <div class="secondary-content">
-          <span class="new badge tag" attr.data-badge-caption="{{bug?.state}}"></span>
-          <span class="new badge tag" attr.data-badge-caption="{{bug?.priority}}"></span>
-        </div>
-      </div>
-    </div>
-    <div *ngIf="editState">
-      <div class="card">
-        <div class="card-content">
-          <span class="card-title">Edit</span>
-          <form class="col s6" (ngSubmit)="update(bug)">
-            <div class="row">
-              <div class="input-field col s6">
-                <input type="text" placeholder="Add Title" [(ngModel)]="bug.name" name="name">
-                <label class="active">Name</label>
-              </div>
-              <div class="input-field col s6">
-                <input type="text" placeholder="Add Title" [(ngModel)]="bug.description" name="description">
-                <label class="active">Description</label>
-              </div>
+        <textarea [(ngModel)]="bug.description" name="description" rows="8" cols="80"></textarea>
+      </li>
+      <li class="collection-item">
+        <div class="col s6">
+          <div class="row">
+            <div class="col s6">
+              <mat-form-field>
+                <mat-label>
+                  <link rel="manifest" href="./manifest.json">Priority</mat-label>
+                <mat-select [(value)]="bug.priority">
+                  <mat-option value="{{priority}}" *ngFor="let priority of priorities">
+                    {{priority}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
-            <div class="row">
-              <div class="input-field col s6">
-                <mat-form-field>
-                  <mat-label>
-                    <link rel="manifest" href="./manifest.json">Priority</mat-label>
-                  <mat-select [(value)]="bug.priority">
-                    <mat-option value="{{priority}}" *ngFor="let priority of priorities">
-                      {{priority}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
-              <div class="input-field col s6">
-                <mat-form-field>
-                  <mat-label>State</mat-label>
-                  <mat-select [(value)]="bug.state">
-                    <mat-option value="{{state}}" *ngFor="let state of states">
-                      {{state}}
-                    </mat-option>
-                  </mat-select>
-                </mat-form-field>
-              </div>
+            <div class="col s6">
+              <mat-form-field>
+                <mat-label>
+                  <link rel="manifest" href="./manifest.json">Priority</mat-label>
+                <mat-select [(value)]="bug.state">
+                  <mat-option value="{{state}}" *ngFor="let state of states">
+                    {{state}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
             </div>
-            <input (click)="clearState(); update(bug)" type="reset" value="Submit" class="btn">
-            <button (click)="clearState()" type="reset" class="btn orange">Cancel</button>
-          </form>
+          </div>
         </div>
-      </div>
-    </div>
+      </li>
+      <li class="collection-item secondary-content">
+        <a (click)="toggleEditState()" class="cancel">Cancel</a>
+        <a (click)="update()" class="update">Update</a>
+      </li>
+    </ul>
   </div>
   <ng-template #nobug>
     <ul class="collection">

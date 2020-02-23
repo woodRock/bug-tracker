@@ -1,43 +1,63 @@
-<a (click)="goToProject()"><i class="material-icons">arrow_back</i></a>
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">Add Bug</span>
-    <form class="col s6">
-      <div class="row">
-        <div class="input-field col s6">
-          <input type="text" placeholder="Add Title" [(ngModel)]="this.bug.name" name="name">
-          <label class="active">Name</label>
+<div class="secondary-col">
+  <h5>
+    <a (click)="goToProject()"><i class="material-icons">arrow_back</i></a>
+    Projects
+    <i class="material-icons">chevron_right</i>
+    {{project?.name}}
+    <i class="material-icons">chevron_right</i>
+    Add Bug
+  </h5>
+</div>
+<h4>
+  <strong>
+    Add Bug
+  </strong>
+</h4>
+<hr>
+<div class="col s6">
+  <form>
+    <div class="card">
+      <div class="card-content">
+        <div class="row">
+          <div class="input-field col s6">
+            <input type="text" placeholder="Bug name" [(ngModel)]="this.bug.name" name="name">
+            <label class="active">Name</label>
+          </div>
         </div>
-        <div class="input-field col s6">
-          <input type="text" placeholder="Add Title" [(ngModel)]="this.bug.description" name="description">
-          <label class="active">Description</label>
+        <div class="row">
+          <div class="input-field">
+            <textarea [(ngModel)]="this.bug.description" name="description" name="description" rows="8" cols="80"></textarea>
+            <label class="active">Description</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <mat-form-field>
+              <mat-label>
+                <link rel="manifest" href="./manifest.json">Priority</mat-label>
+              <mat-select [(value)]="this.bug.priority">
+                <mat-option value="{{priority}}" *ngFor="let priority of priorities">
+                  {{priority}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="input-field col s6">
+            <mat-form-field>
+              <mat-label>State</mat-label>
+              <mat-select [(value)]="this.bug.state">
+                <mat-option value="{{state}}" *ngFor="let state of states">
+                  {{state}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
       </div>
-      <div class="row">
-        <div class="input-field col s6">
-          <mat-form-field>
-            <mat-label>
-              <link rel="manifest" href="./manifest.json">Priority</mat-label>
-            <mat-select [(value)]="this.bug.priority">
-              <mat-option value="{{priority}}" *ngFor="let priority of priorities">
-                {{priority}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <div class="input-field col s6">
-          <mat-form-field>
-            <mat-label>State</mat-label>
-            <mat-select [(value)]="this.bug.state">
-              <mat-option value="{{state}}" *ngFor="let state of states">
-                {{state}}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-      </div>
-      <input (click)="onSubmit()" type="submit reset" value="Submit" class=" btn">
-      <button (click)="goToProject()" type="reset" class="btn orange">Cancel</button>
-    </form>
-  </div>
+    </div>
+    <div class="secondary-content">
+      <a (click)="goToProject()" type="reset" class="cancel">Cancel</a>
+      <a (click)="onSubmit()" type="submit reset" class="update">Create</a>
+    </div>
+  </form>
 </div>

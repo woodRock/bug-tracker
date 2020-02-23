@@ -23,6 +23,7 @@ export class BugsComponent implements OnInit {
   private pid: string;
   private editState: boolean = false;
   private searchValue: string;
+  private sortByNewest: boolean = false;
 
   constructor(
     private service: ProjectService,
@@ -36,41 +37,38 @@ export class BugsComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
-        this.service.getBugs(params.get('pid'))))
-      .subscribe(bugs => {
-        this.bugs = bugs as Bug[]
-      });
+        this.service.getBugs(params.get('pid')))).subscribe(bugs => {
+          this.bugs = bugs as Bug[]
+        });
     this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.service.get(params.get('pid'))))
-      .subscribe(p => {
-        this.project = p as Project
-      });
-    this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => params.get('pid')))
-      .subscribe(pid => {
+      switchMap((params: ParamMap) => params.get('pid'))).subscribe(pid => {
         this.pid = this.pid == null ? pid : this.pid + pid;
       });
+    this.service.get(this.pid).subscribe(
+      project => {
+        this.project = project
+      }
+    );
   }
 
-  edit(){
-    this.editState = true;
-  }
-
-  clearState(){
-    this.editState = false;
-  }
-
-  update(){
+  update() {
     this.project.id = this.pid;
     this.service.update(this.project);
-    this.clearState();
+    this.toggleEditState();
   }
 
-  delete(){
+  delete() {
     this.service.delete(this.pid);
-    this.clearState();
+    this.toggleEditState();
     this.goToProjects();
+  }
+
+  toggleEditState(){
+    this.editState = !this.editState;
+  }
+
+  toggleTimeSort(){
+    this.sortByNewest = !this.sortByNewest;
   }
 
   goToProjects() {
@@ -84,7 +82,7 @@ export class BugsComponent implements OnInit {
       .then(() => this.router.navigate(['/projects/' + this.pid + '/' + bugId]));
   }
 
-  goToAddBug(){
+  goToAddBug() {
     this.router.navigate(['projects/' + this.pid + '/' + 'add-bug'])
   }
 }

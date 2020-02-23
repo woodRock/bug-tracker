@@ -1,23 +1,26 @@
-<a routerLink="/projects"><i class="material-icons">arrow_back</i></a>
-<div class="card">
-  <div class="card-content">
-    <span class="card-title">Add Project</span>
-    <form class="col s6">
-      <div class="row">
-        <div class="input-field col s6">
-          <input type="text" placeholder="Add Title" [(ngModel)]="project.name" name="name">
-          <label class="active">Title</label>
-        </div>
-        <div class="input-field col s6">
-          <input type="text" placeholder="Add Title" [(ngModel)]="project.description" name="description">
-          <label class="active">Description</label>
-        </div>
-      </div>
-      <div class="row">
-          <app-users></app-users>
-          <button class="btn orange" (click)="selectUser()">
-            <i class="material-icons">add</i>
-          </button>
+<div class="secondary-col">
+  <h5>
+    <a routerLink="/projects"><i class="material-icons">arrow_back</i></a>
+    Projects
+    <i class="material-icons">chevron_right</i>
+    Add Project
+  </h5>
+</div>
+<h4>
+  <strong>
+    Add Project
+  </strong>
+</h4>
+<hr>
+<div class="col s6">
+  <form>
+    <div class="card">
+      <div class="card-content">
+        <div class="row">
+          <div class="input-field col s6">
+            <input type="text" placeholder="Project name" [(ngModel)]="project.name" name="name">
+            <label class="active">Name</label>
+          </div>
           <div class="input-field col s6">
             <label>
               <input type="checkbox" [(ngModel)]="project.private" name="private">
@@ -25,7 +28,23 @@
             </label>
           </div>
         </div>
-        <input routerLink="/projects" type="submit" value="Submit" class=" btn"(click)="onSubmit()" >
-    </form>
-  </div>
+        <div class="row">
+          <textarea [(ngModel)]="project.description" cols="30" rows="10"></textarea>
+          <label class="active">Description</label>
+        </div>
+        <div class="row">
+          <app-users></app-users>
+          <button class="btn orange" (click)="selectUser()">
+            <i class="material-icons">add</i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="secondary-content">
+        <a routerLink="/projects" class="cancel">Cancel</a>
+        <a routerLink="/projects" type="submit" class="update" (click)="onSubmit()">Submit</a>
+      </div>
+    </div>
+  </form>
 </div>

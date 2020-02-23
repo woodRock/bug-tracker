@@ -22,7 +22,6 @@ export class ProjectsComponent implements OnInit {
   private projects: Project[];
   private searchValue: String;
   private sortByNewest: boolean = false;
-  private groupByScope: boolean = false;
 
   constructor(
     private service: ProjectService,
@@ -61,10 +60,6 @@ export class ProjectsComponent implements OnInit {
     this.sortByNewest = !this.sortByNewest;
   }
 
-  toggleScopeGroup(){
-    this.groupByScope = !this.groupByScope;
-  }
-
   goToProject(project: Project) {
     let projectId = project ? project.id : null;
     this.router.navigate(['/projects', project.id ]);
@@ -72,5 +67,9 @@ export class ProjectsComponent implements OnInit {
 
   goToAddProject(){
     this.router.navigate(['projects/add-project']);
+  }
+
+  goToSignIn(){
+    this.router.navigate(['/sign-in']);
   }
 }

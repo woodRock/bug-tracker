@@ -11,11 +11,10 @@
     <div *ngIf="service.photoURL != '' && service.photoURL != null"
     routerLink="sign-in" routerLinkActive="active">
       <button mat-button>
-        <img src="{{service.photoURL}}" alt="" class="circle" height="30px" width=height
-        >
+        <img src="{{service.photoURL}}" alt="" class="circle" height="30px" width=height>
       </button>
     </div>
-    <div *ngIf="service.photoURL == '' || service.photoURL == null">
+    <div class="secondary-content" *ngIf="service.photoURL == '' || service.photoURL == null">
       <button mat-button
       routerLink="sign-in" routerLinkActive="active">
         <i class="material-icons">account_circle</i>

@@ -15,6 +15,29 @@
   color: red;
 }
 
-.title:hover {
-  text-decoration-color: blue;
+input[type="text"] {
+  /* font-family: Roboto; */
+  font-size: 32px;
+  width: 50%;
+}
+
+.cancel, .update {
+  display: inline-block;
+  border: none;
+  background-color: #4CAF50;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 4px;
+  color: white;
+}
+
+.cancel {
+  color: red;
+  background-color: #E8E8E8;
+}
+
+.search {
+  background-color: #3498DB;
 }

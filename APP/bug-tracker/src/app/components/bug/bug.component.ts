@@ -35,27 +35,19 @@ export class BugComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => params.get('pid')))
-      .subscribe(id => {
+      switchMap((params: ParamMap) => params.get('pid'))).subscribe(id => {
         this.pid = this.pid == null ? id : this.pid + id
       });
     this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => params.get('bid')))
-      .subscribe(id => {
+      switchMap((params: ParamMap) => params.get('bid'))).subscribe(id => {
         this.bid = this.bid == null ? id : this.bid + id
       });
-    this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.service.getBug(params.get('pid'), params.get('bid'))))
-      .subscribe(bug => {
-        this.bug = bug as Bug
-      });
-    this.route.paramMap.pipe(
-      switchMap((params: ParamMap) =>
-        this.service.get(params.get('pid'))))
-      .subscribe(p => {
-        this.project = p as Project
-      });
+    this.service.getBug(this.pid, this.bid).subscribe(bug => {
+      this.bug = bug
+    });
+    this.service.get(this.pid).subscribe(project => {
+      this.project = project
+    });
   }
 
   goBackToProject() {
@@ -70,17 +62,14 @@ export class BugComponent implements OnInit {
     this.goToProject();
   }
 
-  edit() {
-    this.editState = true;
-  }
-
-  clearState() {
-    this.editState = false;
+  toggleEditState(){
+    this.editState = !this.editState;
   }
 
   update() {
     this.bug.id = this.bid;
     this.service.updateBug(this.pid, this.bug);
+    this.toggleEditState();
   }
 
   time() {

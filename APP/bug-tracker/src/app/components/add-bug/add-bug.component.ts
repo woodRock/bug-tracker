@@ -15,6 +15,7 @@ import { switchMap } from 'rxjs/operators'
 })
 export class AddBugComponent implements OnInit {
 
+  private project: Project;
   private pid: string;
   private priorities: string[];
   private states: string[];
@@ -25,8 +26,8 @@ export class AddBugComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
   ) {
-    this.priorities = ['Minor','Non-Critical','Impaired Functionality','Catastrophic'];
-    this.states = ['Active','Test','Verified','Closed','Opened'];
+    this.priorities = ['Minor', 'Non-Critical', 'Impaired Functionality', 'Catastrophic'];
+    this.states = ['Active', 'Test', 'Verified', 'Closed', 'Opened'];
     this.bug = this.newBug();
   }
 
@@ -36,9 +37,14 @@ export class AddBugComponent implements OnInit {
       .subscribe(pid => {
         this.pid = this.pid == null ? pid : this.pid + pid;
       });
+    this.service.get(this.pid).subscribe(
+      project => {
+        this.project = project
+      }
+    );
   }
 
-  onSubmit(){
+  onSubmit() {
     if (this.validBug())
       this.addBug();
     else
@@ -46,7 +52,7 @@ export class AddBugComponent implements OnInit {
     this.goToProject();
   }
 
-  addBug(){
+  addBug() {
     this.bug.time = new Date();
     this.service.addBug(this.pid, this.bug);
     this.bug = this.newBug();
@@ -72,7 +78,7 @@ export class AddBugComponent implements OnInit {
     }
   }
 
-  goToProject(){
+  goToProject() {
     this.router.navigate([{ outlets: { secondary: null } }])
       .then(() => this.router.navigate(['/projects/' + this.pid]));
   }
