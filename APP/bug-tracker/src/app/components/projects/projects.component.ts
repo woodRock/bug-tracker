@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader'
 import { ProjectService } from '../../services/project.service'
 import { Project } from '../../models/project.model'
@@ -18,10 +18,11 @@ import { TimeAgoPipe } from 'time-ago-pipe'
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.css']
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, OnDestroy {
   private projects: Project[];
   private searchValue: String;
   private sortByNewest: boolean = false;
+  private subscription;
 
   constructor(
     private service: ProjectService,
@@ -30,9 +31,13 @@ export class ProjectsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.service.list().subscribe(projects => {
+    this.subscription = this.service.list().subscribe(projects => {
       this.projects = projects;
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   trim(s: string) {

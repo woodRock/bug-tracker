@@ -34,8 +34,17 @@ export class AddUserComponent implements OnInit {
   }
 
   register() {
-    if (this.valid())
-      this.service.register(this.user.displayName, this.user.email, this.user.password);
+    if (this.valid()) {
+      this.service.register(this.user.displayName, this.user.email, this.user.password).then(function(result) {
+
+      }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        var email = error.email;
+        var credential = error.credential;
+        alert("Error: " + errorMessage);
+      });
+    }
   }
 
   goToLogin() {

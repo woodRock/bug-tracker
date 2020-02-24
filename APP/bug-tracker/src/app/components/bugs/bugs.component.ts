@@ -57,7 +57,13 @@ export class BugsComponent implements OnInit {
     this.toggleEditState();
   }
 
+  confirmDelete(): boolean {
+    return confirm("Delete Project: \"" + this.project.name + "\"?");
+  }
+
   delete() {
+    if (!this.confirmDelete())
+      return;
     this.service.delete(this.pid);
     this.toggleEditState();
     this.goToProjects();

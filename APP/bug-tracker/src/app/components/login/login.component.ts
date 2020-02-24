@@ -35,13 +35,12 @@ export class LoginComponent implements OnInit {
   }
 
   goToProjects() {
-    // this.router.navigate(['/projects']);
     this.router.navigateByUrl('/RefreshComponent', { skipLocationChange: true }).then(() => {
-    this.router.navigate(['/projects']);
-});
+      this.router.navigate(['/projects']);
+    });
   }
 
-  goToForgotPassword(){
+  goToForgotPassword() {
     this.router.navigate(['/sign-in/forgot-password']);
   }
 

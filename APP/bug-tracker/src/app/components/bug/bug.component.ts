@@ -57,7 +57,13 @@ export class BugComponent implements OnInit {
     }
   }
 
+  confirmDelete(): boolean {
+    return confirm("Delete the bug: \"" + this.bug.name + "\"?");
+  }
+
   delete() {
+    if (!this.confirmDelete())
+      return;
     this.service.deleteBug(this.pid, this.bid);
     this.goToProject();
   }

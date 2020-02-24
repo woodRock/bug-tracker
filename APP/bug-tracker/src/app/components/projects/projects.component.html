@@ -1,7 +1,12 @@
 <div class="secondary-col">
   <h5><a (click)="goToSignIn()"><i class="material-icons">arrow_back</i></a>Projects</h5>
 </div>
-<h4><strong>Projects</strong></h4>
+<h4>
+  <strong>Projects</strong>
+  <div class="secondary-content">
+    <a (click)="goToAddProject()"><i class="material-icons">add</i></a>
+  </div>
+</h4>
 <hr>
 <div class="card">
   <div class="card-content">
@@ -27,7 +32,7 @@
             <i (click)="toggleTimeSort()" *ngIf="!sortByNewest" class="material-icons">arrow_drop_up</i>
           </th>
         </tr>
-        <tr *ngFor="let project of projects | searchfilter : 'name' : txtFname.value | sortgrid : (sortByNewest ? '-time' : 'time')">
+        <tr *ngFor="let project of projects | searchfilter : 'name' : txtFname.value | sortgrid : (sortByNewest ? 'time' : '-time')">
           <td><strong><a (click)="goToProject(project)">{{project.name}}</a></strong></td>
           <td>
             <div class="secondary-col">

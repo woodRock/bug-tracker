@@ -95,7 +95,7 @@
             <i (click)="toggleTimeSort()" *ngIf="!sortByNewest" class="material-icons">arrow_drop_up</i>
           </th>
         </tr>
-        <tr *ngFor="let bug of bugs | searchfilter : 'name' : txtFname.value | sortgrid : (sortByNewest ? '-time' : 'time')">
+        <tr *ngFor="let bug of bugs | searchfilter : 'name' : txtFname.value | sortgrid : (sortByNewest ? 'time' : '-time')">
           <td>
             <div>
               <strong><a (click)="goToBug(bug)">{{bug.name}}</a></strong>

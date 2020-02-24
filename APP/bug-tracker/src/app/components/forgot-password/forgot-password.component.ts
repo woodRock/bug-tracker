@@ -25,9 +25,10 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   sendPasswordResetEmail(){
-    this.submitted = true;
-    if (this.valid())
+    if (this.valid()){
+      this.submitted = true;
       this.service.sendPasswordResetEmail(this.email);
+    }
   }
 
   goToSignIn(){
