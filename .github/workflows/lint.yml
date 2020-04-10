@@ -10,6 +10,10 @@ jobs:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
       - name: Install 🔧
-        run: npm ci
+        run: |
+          cd APP/bug-tracker
+          npm ci
       - name: Run Linters 🔥
-        run: npm run lint
+        run: |
+          cd APP/bug-tracker
+          npm run lint
