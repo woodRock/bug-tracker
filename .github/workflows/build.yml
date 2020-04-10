@@ -11,5 +11,6 @@ jobs:
         uses: actions/checkout@v2
       - name: Install & Build 🔧
         run: |
+          cd APP/bug-tracker
           npm ci
           npm run build
