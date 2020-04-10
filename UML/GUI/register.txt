@@ -1,9 +1,0 @@
-@startsalt 
-{
-Username : | "woodRock  "
-Email : | "wood.rock@example.com"
-Password : | "****      "          
-[Cancel <&x>] | [Register]
-}
-@endsalt
-
