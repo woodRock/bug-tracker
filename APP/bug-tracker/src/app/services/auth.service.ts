@@ -1,19 +1,19 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router'
-import { auth } from 'firebase/app'
-import { AngularFireAuth } from '@angular/fire/auth'
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore'
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { User } from '../models/user.model';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {auth} from 'firebase/app';
+import {AngularFireAuth} from '@angular/fire/auth';
+import {AngularFirestore, AngularFirestoreDocument} from '@angular/fire/firestore';
+import {Observable, of} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
+import {User} from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user$: Observable<User>;
-  uid: string = '';
-  photoURL: string = '';
+  uid = '';
+  photoURL = '';
 
   constructor(
     private afa: AngularFireAuth,
@@ -28,13 +28,13 @@ export class AuthService {
           return of(null);
         }
       })
-    )
+    );
     this.afa.authState.subscribe(user => {
       if (user) {
         this.uid = user.uid;
         this.photoURL = user.photoURL;
       }
-    })
+    });
   }
 
   async register(username, email, password) {
@@ -43,19 +43,12 @@ export class AuthService {
   }
 
   async emailSignIn(email, password) {
-    var credential;
-    await this.afa.auth.signInWithEmailAndPassword(email, password).then(function(result) {
+    let credential;
+    await this.afa.auth.signInWithEmailAndPassword(email, password).then(result => {
       credential = result;
-    }).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-      alert("Error: " + errorMessage);
+    }).catch(error => {
+      const errorMessage = error.message;
+      alert('Error: ' + errorMessage);
     });
     return this.updateUserData(credential.user);
   }
@@ -78,13 +71,13 @@ export class AuthService {
   }
 
   async signOut() {
-    await this.afa.auth.signOut().then(function() {
-    }).catch(function(error) {
+    await this.afa.auth.signOut().then(() => {
+    }).catch(error => {
       console.log(error);
     });
     this.uid = '';
     this.photoURL = '';
-    return this.router.navigate(['/sign-in'])
+    return this.router.navigate(['/sign-in']);
   }
 
   async isLoggedIn() {
@@ -92,14 +85,11 @@ export class AuthService {
   }
 
   sendPasswordResetEmail(email) {
-    this.afa.auth.sendPasswordResetEmail(email).then(function(result) {
-      
-    }).catch(function(error) {
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      var email = error.email;
-      var credential = error.credential;
-      alert("Error: " + errorMessage);
+    this.afa.auth.sendPasswordResetEmail(email).then(result => {
+
+    }).catch(error => {
+      const errorMessage = error.message;
+      alert('Error: ' + errorMessage);
     });
   }
 }

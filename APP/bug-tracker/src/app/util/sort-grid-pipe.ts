@@ -1,4 +1,4 @@
-import { Injectable, Pipe, PipeTransform } from '@angular/core';
+import {Injectable, Pipe, PipeTransform} from '@angular/core';
 
 @Pipe({
   name: 'sortgrid'
@@ -7,15 +7,15 @@ import { Injectable, Pipe, PipeTransform } from '@angular/core';
 @Injectable()
 export class SortGridPipe implements PipeTransform {
   transform(array: Array<any>, args: string): Array<any> {
-    if (typeof args[0] === "undefined") {
+    if (typeof args[0] === 'undefined') {
       return array;
     }
-    let direction = args[0][0];
-    let column = args.replace('-', '');
+    const direction = args[0][0];
+    const column = args.replace('-', '');
     array.sort((a: any, b: any) => {
-      let left = Number(new Date(a[column]));
-      let right = Number(new Date(b[column]));
-      return (direction === "-") ? right - left : left - right;
+      const left = Number(new Date(a[column]));
+      const right = Number(new Date(b[column]));
+      return (direction === '-') ? right - left : left - right;
     });
     return array;
   }

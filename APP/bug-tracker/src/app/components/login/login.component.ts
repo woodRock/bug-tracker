@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core'
-import { AuthService } from '../../services/auth.service'
-import { Router } from '@angular/router'
-import { MatDialog } from '@angular/material'
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,15 +9,16 @@ import { MatDialog } from '@angular/material'
 })
 export class LoginComponent implements OnInit {
 
-  username: string = '';
-  password: string = '';
-  loading: boolean = false;
+  username = '';
+  password = '';
+  loading = false;
 
   constructor(private service: AuthService, private router: Router) { }
 
   signIn(): void {
-    if (!this.invalid())
+    if (!this.invalid()) {
       this.service.emailSignIn(this.username, this.password);
+    }
   }
 
   goToRegister() {
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   invalid() {
-    return this.username == '' || this.password == '';
+    return this.username === '' || this.password === '';
   }
 
   goToProjects() {

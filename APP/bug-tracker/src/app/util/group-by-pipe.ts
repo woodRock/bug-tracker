@@ -1,11 +1,13 @@
-import { Injectable, Pipe, PipeTransform } from '@angular/core';
+import {Injectable, Pipe, PipeTransform} from '@angular/core';
 
 function compare(a, b) {
-  if (a.private == (b.private))
+  if (a.private === (b.private)) {
     return 0;
-  if (a.private == 'private')
+  }
+  if (a.private === 'private') {
     return 1;
-  return -1
+  }
+  return -1;
 }
 
 @Pipe({

@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   config: {
-      apiKey: "AIzaSyDQu481QfBjdgfsv7IHXlWXMybHy8NxY78",
-      authDomain: "bug-tracker-59d88.firebaseapp.com",
-      databaseURL: "https://bug-tracker-59d88.firebaseio.com",
-      projectId: "bug-tracker-59d88",
-      storageBucket: "bug-tracker-59d88.appspot.com",
-      messagingSenderId: "1009660913153"
+      apiKey: 'AIzaSyDQu481QfBjdgfsv7IHXlWXMybHy8NxY78',
+      authDomain: 'bug-tracker-59d88.firebaseapp.com',
+      databaseURL: 'https://bug-tracker-59d88.firebaseio.com',
+      projectId: 'bug-tracker-59d88',
+      storageBucket: 'bug-tracker-59d88.appspot.com',
+      messagingSenderId: '1009660913153'
     }
 };
 

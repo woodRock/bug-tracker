@@ -37,7 +37,7 @@
 <div *ngIf="editState">
   <h4>
     <strong>
-      <input [(ngModel)]="project.name" type="text" class="title-edit" maxlength="20" size="20">
+      <input [(ngModel)]="_project.name" type="text" class="title-edit" maxlength="20" size="20">
     </strong>
     <div class="secondary-content">
       <a (click)="goToAddBug()"><i class="material-icons">add</i></a>
@@ -83,7 +83,7 @@
         </form>
       </div>
     </nav>
-    <div *ngIf="bugs?.length > 0;else nobugs">
+    <div *ngIf="_bugs?.length > 0;else nobugs">
       <table>
         <tr>
           <th>name</th>
@@ -95,7 +95,7 @@
             <i (click)="toggleTimeSort()" *ngIf="!sortByNewest" class="material-icons">arrow_drop_up</i>
           </th>
         </tr>
-        <tr *ngFor="let bug of bugs | searchfilter : 'name' : txtFname.value | sortgrid : (sortByNewest ? 'time' : '-time')">
+        <tr *ngFor="let bug of bugs | searchFilter : 'name' : txtFname.value | sortgrid : (sortByNewest ? 'time' : '-time')">
           <td>
             <div>
               <strong><a (click)="goToBug(bug)">{{bug.name}}</a></strong>

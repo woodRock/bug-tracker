@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../../models/user.model'
-import { UserService } from '../../services/user.service'
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
+import {Component, OnInit} from '@angular/core';
+import {User} from '../../models/user.model';
+import {UserService} from '../../services/user.service';
 
 @Component({
   selector: 'app-users',
@@ -11,17 +9,21 @@ import { MatSelectModule } from '@angular/material/select';
 })
 
 export class UsersComponent implements OnInit {
-  users: User[];
+  private _users: User[];
   selected: string;
 
-  constructor(private userService : UserService) {
+  constructor(private userService: UserService) {
 
+  }
+
+  get users(): User[] {
+    return this._users;
   }
 
   ngOnInit() {
     this.userService.list().subscribe( users => {
-      this.users = users
-    })
+      this._users = users;
+    });
   }
 
 }

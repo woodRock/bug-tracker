@@ -1,10 +1,10 @@
-import { Entity } from './entity.model'
+import {Entity} from './entity.model';
 
 export interface Bug extends Entity {
-  name?: string,
-  description?: string,
-  priority?: string,
-  state?: string,
-  contributor?: string,
-  time?: Date
+  name?: string;
+  description?: string;
+  priority?: string;
+  state?: string;
+  contributor?: string;
+  time?: Date;
 }

@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ProjectService } from '../../services/project.service';
-import { Project } from '../../models/project.model';
-import { User } from '../../models/user.model';
-import { ViewChild, AfterViewInit } from '@angular/core';
-import { UsersComponent } from '../users/users.component';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {ProjectService} from '../../services/project.service';
+import {Project} from '../../models/project.model';
+import {UsersComponent} from '../users/users.component';
 
 function serialize<T>(object: T) {
   return JSON.parse(JSON.stringify(object));
@@ -15,9 +13,8 @@ function serialize<T>(object: T) {
   styleUrls: ['./add-project.component.css']
 })
 export class AddProjectComponent implements OnInit, AfterViewInit {
-
   @ViewChild(UsersComponent, { static: false }) user;
-  private project: Project;
+  private readonly project: Project;
   selected: string;
 
   constructor(private projectService: ProjectService) {
@@ -28,21 +25,23 @@ export class AddProjectComponent implements OnInit, AfterViewInit {
   }
 
   validProject() {
-    return this.project.name != '' && this.project.description != ''
+    return this.project.name !== '' && this.project.description !== '';
   }
 
   addProject() {
     this.project.time = new Date(); // Ensures the time is when submitted
     this.projectService.add(this.project);
-    this.clearProject()
+    this.clearProject();
   }
 
   onSubmit() {
-    if (this.validProject()) this.addProject();
+    if (this.validProject()) {
+      this.addProject();
+    }
   }
 
   ngAfterViewInit() {
-    this.selected = this.user.selected
+    this.selected = this.user.selected;
   }
 
   selectUser() {
@@ -58,7 +57,7 @@ export class AddProjectComponent implements OnInit, AfterViewInit {
       collaborators: [],
       private: false,
       time: new Date()
-    }
+    };
   }
 
 }

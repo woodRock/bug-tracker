@@ -3,7 +3,7 @@ enum Priority {
   NONCRITICAL,
   IMPAIRED,
   CATASTROPHIC
-};
+}
 
 enum State {
   ACTIVE,
@@ -11,4 +11,4 @@ enum State {
   VERIFIED,
   CLOSED,
   REOPENED
-};
+}

@@ -32,7 +32,7 @@
             <i (click)="toggleTimeSort()" *ngIf="!sortByNewest" class="material-icons">arrow_drop_up</i>
           </th>
         </tr>
-        <tr *ngFor="let project of projects | searchfilter : 'name' : txtFname.value | sortgrid : (sortByNewest ? 'time' : '-time')">
+        <tr *ngFor="let project of projects | searchFilter : 'name' : txtFname.value | sortgrid : (sortByNewest ? 'time' : '-time')">
           <td><strong><a (click)="goToProject(project)">{{project.name}}</a></strong></td>
           <td>
             <div class="secondary-col">

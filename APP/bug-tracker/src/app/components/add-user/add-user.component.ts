@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core'
-import { Router, ActivatedRoute, ParamMap } from '@angular/router'
-import { AuthService } from '../../services/auth.service'
-import { User } from '../../models/user.model'
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth.service';
+import {User} from '../../models/user.model';
 
 @Component({
   selector: 'app-add-user',
@@ -9,8 +9,8 @@ import { User } from '../../models/user.model'
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent implements OnInit {
-
   private user: User;
+
   constructor(
     private service: AuthService,
     private router: Router
@@ -19,7 +19,7 @@ export class AddUserComponent implements OnInit {
       displayName: '',
       email: '',
       password: ''
-    }
+    };
   }
 
   ngOnInit() {
@@ -30,19 +30,18 @@ export class AddUserComponent implements OnInit {
   }
 
   valid() {
-    return this.user.email != '' && this.user.password != '';
+    return this.user.email !== '' && this.user.password !== '';
   }
 
   register() {
     if (this.valid()) {
-      this.service.register(this.user.displayName, this.user.email, this.user.password).then(function(result) {
-
-      }).catch(function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        var email = error.email;
-        var credential = error.credential;
-        alert("Error: " + errorMessage);
+      this.service.register(this.user.displayName, this.user.email, this.user.password).then((result) => {
+      }).catch( (error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.email;
+        const credential = error.credential;
+        alert('Error: ' + errorMessage);
       });
     }
   }

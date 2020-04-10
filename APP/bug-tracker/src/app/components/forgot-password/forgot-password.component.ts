@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core'
-import { AuthService } from '../../services/auth.service'
-import { Router, ActivatedRoute, ParamMap } from '@angular/router'
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-forgot-password',
@@ -9,8 +9,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router'
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  private email: string = '';
-  private submitted: boolean = false;
+  private email = '';
+  private submitted = false;
 
   constructor(
     private service: AuthService,
@@ -20,18 +20,18 @@ export class ForgotPasswordComponent implements OnInit {
   ngOnInit() {
   }
 
-  valid(){
-    return this.email != '';
+  valid() {
+    return this.email !== '';
   }
 
-  sendPasswordResetEmail(){
-    if (this.valid()){
+  sendPasswordResetEmail() {
+    if (this.valid()) {
       this.submitted = true;
       this.service.sendPasswordResetEmail(this.email);
     }
   }
 
-  goToSignIn(){
+  goToSignIn() {
     this.router.navigate(['/sign-in']);
   }
 

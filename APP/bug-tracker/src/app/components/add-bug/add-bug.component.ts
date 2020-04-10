@@ -1,12 +1,9 @@
-import { Component, OnInit } from '@angular/core'
-import { MatFormFieldModule } from '@angular/material/form-field'
-import { MatSelectModule } from '@angular/material/select'
-import { Project } from '../../models/project.model'
-import { Bug } from '../../models/bug.model'
-import { ProjectService } from '../../services/project.service'
-import { Router, ActivatedRoute, ParamMap } from '@angular/router'
-import { Observable } from 'rxjs'
-import { switchMap } from 'rxjs/operators'
+import {Component, OnInit} from '@angular/core';
+import {Project} from '../../models/project.model';
+import {Bug} from '../../models/bug.model';
+import {ProjectService} from '../../services/project.service';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-bugs',
@@ -14,7 +11,6 @@ import { switchMap } from 'rxjs/operators'
   styleUrls: ['./add-bug.component.css']
 })
 export class AddBugComponent implements OnInit {
-
   private project: Project;
   private pid: string;
   private priorities: string[];
@@ -39,16 +35,17 @@ export class AddBugComponent implements OnInit {
       });
     this.service.get(this.pid).subscribe(
       project => {
-        this.project = project
+        this.project = project;
       }
     );
   }
 
   onSubmit() {
-    if (this.validBug())
+    if (this.validBug()) {
       this.addBug();
-    else
-      console.log("Invalid!");
+    } else {
+      console.log('Invalid!');
+    }
     this.goToProject();
   }
 
@@ -63,7 +60,7 @@ export class AddBugComponent implements OnInit {
   }
 
   empty(str): boolean {
-    return str == '';
+    return str === '';
   }
 
   newBug(): Bug {
@@ -75,7 +72,7 @@ export class AddBugComponent implements OnInit {
       state: '',
       contributor: '',
       time: new Date()
-    }
+    };
   }
 
   goToProject() {
