@@ -15,9 +15,8 @@ jobs:
           npm install
           npm run build
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           BRANCH: master # The branch the action should deploy to.
           FOLDER: APP/bug-tracker/dist # The folder the action should deploy.
           CLEAN: true
