@@ -30,10 +30,6 @@ export class BugComponent implements OnInit {
     this.states = ['Active', 'Test', 'Verified', 'Closed', 'Opened'];
   }
 
-  get bug(): Bug {
-    return this.bug;
-  }
-
   ngOnInit() {
     this.route.paramMap.pipe(
       switchMap((params: ParamMap) => params.get('pid'))).subscribe(id => {
