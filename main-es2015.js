@@ -944,9 +944,6 @@ let BugComponent = class BugComponent {
         this.priorities = ['Minor', 'Non-Critical', 'Impaired Functionality', 'Catastrophic'];
         this.states = ['Active', 'Test', 'Verified', 'Closed', 'Opened'];
     }
-    get bug() {
-        return this._bug;
-    }
     ngOnInit() {
         this.route.paramMap.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])((params) => params.get('pid'))).subscribe(id => {
             this.pid = this.pid == null ? id : this.pid + id;
@@ -955,10 +952,10 @@ let BugComponent = class BugComponent {
             this.bid = this.bid == null ? id : this.bid + id;
         });
         this.service.getBug(this.pid, this.bid).subscribe(bug => {
-            this._bug = bug;
+            this.bug = bug;
         });
         this.service.get(this.pid).subscribe(project => {
-            this._project = project;
+            this.project = project;
         });
     }
     goBackToProject() {
@@ -968,7 +965,7 @@ let BugComponent = class BugComponent {
         }
     }
     confirmDelete() {
-        return confirm('Delete the bug: \"' + this._bug.name + '\"?');
+        return confirm('Delete the bug: \"' + this.bug.name + '\"?');
     }
     delete() {
         if (!this.confirmDelete()) {
@@ -981,12 +978,12 @@ let BugComponent = class BugComponent {
         this.editState = !this.editState;
     }
     update() {
-        this._bug.id = this.bid;
-        this.service.updateBug(this.pid, this._bug);
+        this.bug.id = this.bid;
+        this.service.updateBug(this.pid, this.bug);
         this.toggleEditState();
     }
     time() {
-        return this._bug.time;
+        return this.bug.time;
     }
     goToProject() {
         this.router.navigate([{ outlets: { secondary: null } }])

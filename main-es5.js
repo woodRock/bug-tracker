@@ -1830,10 +1830,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             _this3.bid = _this3.bid == null ? id : _this3.bid + id;
           });
           this.service.getBug(this.pid, this.bid).subscribe(function (bug) {
-            _this3._bug = bug;
+            _this3.bug = bug;
           });
           this.service.get(this.pid).subscribe(function (project) {
-            _this3._project = project;
+            _this3.project = project;
           });
         }
       }, {
@@ -1854,7 +1854,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "confirmDelete",
         value: function confirmDelete() {
-          return confirm('Delete the bug: \"' + this._bug.name + '\"?');
+          return confirm('Delete the bug: \"' + this.bug.name + '\"?');
         }
       }, {
         key: "delete",
@@ -1874,14 +1874,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "update",
         value: function update() {
-          this._bug.id = this.bid;
-          this.service.updateBug(this.pid, this._bug);
+          this.bug.id = this.bid;
+          this.service.updateBug(this.pid, this.bug);
           this.toggleEditState();
         }
       }, {
         key: "time",
         value: function time() {
-          return this._bug.time;
+          return this.bug.time;
         }
       }, {
         key: "goToProject",
@@ -1895,11 +1895,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }]).then(function () {
             return _this5.router.navigate(['/projects/' + _this5.pid]);
           });
-        }
-      }, {
-        key: "bug",
-        get: function get() {
-          return this._bug;
         }
       }]);
 
