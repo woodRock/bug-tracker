@@ -14,8 +14,8 @@ import {AuthService} from '../../services/auth.service';
 export class BugComponent implements OnInit {
   private pid: string;
   private bid: string;
-  private _bug: Bug;
-  private _project: Project;
+  private bug: Bug;
+  private project: Project;
   private editState = false;
   private priorities: string[];
   private states: string[];
@@ -31,7 +31,7 @@ export class BugComponent implements OnInit {
   }
 
   get bug(): Bug {
-    return this._bug;
+    return this.bug;
   }
 
   ngOnInit() {
@@ -44,10 +44,10 @@ export class BugComponent implements OnInit {
         this.bid = this.bid == null ? id : this.bid + id;
       });
     this.service.getBug(this.pid, this.bid).subscribe(bug => {
-      this._bug = bug;
+      this.bug = bug;
     });
     this.service.get(this.pid).subscribe(project => {
-      this._project = project;
+      this.project = project;
     });
   }
 
@@ -59,7 +59,7 @@ export class BugComponent implements OnInit {
   }
 
   confirmDelete(): boolean {
-    return confirm('Delete the bug: \"' + this._bug.name + '\"?');
+    return confirm('Delete the bug: \"' + this.bug.name + '\"?');
   }
 
   delete() {
@@ -75,13 +75,13 @@ export class BugComponent implements OnInit {
   }
 
   update() {
-    this._bug.id = this.bid;
-    this.service.updateBug(this.pid, this._bug);
+    this.bug.id = this.bid;
+    this.service.updateBug(this.pid, this.bug);
     this.toggleEditState();
   }
 
   time() {
-    return this._bug.time;
+    return this.bug.time;
   }
 
   goToProject() {
